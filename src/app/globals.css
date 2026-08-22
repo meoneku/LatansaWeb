@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Dark mode dikendalikan oleh class .dark pada <html> (via next-themes) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Ganti palet di bawah ini jika nanti Latansa sudah punya warna brand final.
+     Palet hijau segar — selaras dengan logo hijau pastel & sorotan teal. */
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+  --color-brand-950: #022c22;
+
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-delay: float 10s ease-in-out 1.5s infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-16px) translateX(8px);
+    }
+  }
+}
+
+/* Token warna yang menyesuaikan tema */
+:root {
+  /* Warna teks/angka yang di-highlight: teal flat, lembut namun tetap terbaca */
+  --highlight-color: #0d9488;
+  --grid-line: rgb(15 23 42 / 0.055);
+}
+
+.dark {
+  --highlight-color: #2dd4bf;
+  --grid-line: rgb(148 163 184 / 0.09);
+}
+
+/* Sorotan teks & angka — warna flat (bukan gradasi) */
+@utility text-highlight {
+  color: var(--highlight-color);
+}
+
+@utility bg-grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      var(--grid-line) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--color-brand-600);
+  color: white;
+}
+
+/* Animasi reveal saat elemen masuk viewport (dikelola komponen <Reveal>).
+   Konten HANYA disembunyikan saat JS aktif (html.js) agar halaman tetap
+   tampil penuh meskipun JavaScript gagal dimuat atau diblokir. */
+.reveal-init {
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.js .reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+html.js .reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-init,
+  html.js .reveal-init {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
