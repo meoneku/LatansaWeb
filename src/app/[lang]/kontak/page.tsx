@@ -135,40 +135,6 @@ export default async function KontakPage({ params }: KontakPageProps) {
         </div>
       </section>
 
-      {/* ============ PETA ============ */}
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <Reveal>
-          <div className="overflow-hidden rounded-3xl border border-slate-200 shadow-sm dark:border-slate-800">
-            <iframe
-              title={`${k.mapTitle} — ${dict.contactInfo.addressShort}`}
-              src={`https://www.google.com/maps?q=${encodeURIComponent(
-                site.mapsQuery,
-              )}&output=embed`}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-              className="h-72 w-full grayscale transition duration-500 hover:grayscale-0 sm:h-96 dark:opacity-90"
-            />
-            <div className="flex flex-col gap-1 border-t border-slate-200 bg-white px-6 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-slate-800 dark:bg-slate-900/60">
-              <p className="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">
-                <MapPin className="size-4 text-brand-500" />
-                {dict.contactInfo.addressFull}
-              </p>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  site.mapsQuery,
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold text-brand-600 transition hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
-              >
-                {k.openMaps}
-              </a>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
       {/* ============ FAQ ============ */}
       <section className="border-t border-slate-100 bg-slate-50/60 py-16 dark:border-slate-800/70 dark:bg-slate-900/30 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

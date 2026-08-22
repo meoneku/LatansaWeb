@@ -4,7 +4,7 @@ const id = {
   meta: {
     tagline: "Solusi Software untuk Bisnis & Pendidikan",
     description:
-      "Latansa adalah penyedia jasa pengembangan software di Jombang. Kami membantu bisnis, sekolah, dan UMKM membangun aplikasi enterprise, aplikasi pendidikan, mobile app, serta website profesional — mulai dari konsultasi gratis hingga pendampingan pasca-rilis.",
+      "Latansa adalah penyedia jasa pengembangan software. Kami membantu bisnis, sekolah, dan UMKM membangun aplikasi enterprise, aplikasi pendidikan, mobile app, serta website profesional - mulai dari konsultasi gratis hingga pendampingan pasca-rilis.",
   },
   nav: {
     home: "Beranda",
@@ -17,7 +17,7 @@ const id = {
     titleStart: "Wujudkan Ide Digital Anda Bersama ",
     titleHighlight: "Latansa",
     description:
-      "Kami membantu bisnis dan lembaga pendidikan membangun aplikasi enterprise, aplikasi pendidikan, mobile app, hingga website profesional — mulai dari konsultasi gratis sampai pendampingan pasca-rilis.",
+      "Kami membantu bisnis dan lembaga pendidikan membangun aplikasi enterprise, aplikasi pendidikan, mobile app, hingga website profesional - mulai dari konsultasi gratis sampai pendampingan pasca-rilis.",
     primaryCta: "Konsultasi Gratis",
     secondaryCta: "Lihat Produk Kami",
     stats: [
@@ -48,24 +48,24 @@ const id = {
     titleHighlight: "Satu Tujuan",
     titleEnd: ": Membantu Anda Tumbuh",
     description:
-      "Dari sistem internal perusahaan sampai website etalase usaha — semua dirancang khusus sesuai kebutuhan, bukan solusi tempelan.",
+      "Dari sistem internal perusahaan sampai website etalase usaha - semua dirancang khusus sesuai kebutuhan, bukan solusi tempelan.",
   },
   learnMore: "Selengkapnya",
   whyUs: {
     eyebrow: "Kenapa Latansa",
     title: "Mengapa Memulai Bersama Kami?",
     description:
-      "Kami studio muda yang sedang bertumbuh — dan itu justru menjadi nilai lebih: setiap proyek mendapat perhatian penuh, bukan sekadar nomor tiket.",
+      "Kami studio muda yang sedang bertumbuh - dan itu justru menjadi nilai lebih: setiap proyek mendapat perhatian penuh, bukan sekadar nomor tiket.",
     items: [
       {
         title: "Harga Bersahabat",
         description:
-          "Sebagai studio yang sedang bertumbuh, kami menawarkan harga transparan dan realistis — disesuaikan dengan kebutuhan serta anggaran Anda.",
+          "Sebagai studio yang sedang bertumbuh, kami menawarkan harga transparan dan realistis - disesuaikan dengan kebutuhan serta anggaran Anda.",
       },
       {
         title: "Pendekatan Kolaboratif",
         description:
-          "Anda dilibatkan di setiap tahap — dari diskusi awal, desain, hingga rilis. Bukan sekadar terima jadi, melainkan membangun bersama.",
+          "Anda dilibatkan di setiap tahap - dari diskusi awal, desain, hingga rilis. Bukan sekadar terima jadi, melainkan membangun bersama.",
       },
       {
         title: "Teknologi Modern",
@@ -85,7 +85,7 @@ const id = {
       {
         title: "Lokal & Mudah Diakses",
         description:
-          "Berbasis di Jombang, kami mudah dihubungi dan terbuka untuk meeting tatap muka bagi klien di area sekitarnya.",
+          "Kami mudah dihubungi dan terbuka untuk meeting tatap muka bagi klien di area sekitarnya.",
       },
     ],
   },
@@ -93,7 +93,7 @@ const id = {
     eyebrow: "Proses Kerja",
     title: "Alur Kerja yang Jelas & Transparan",
     description:
-      "Lima tahap sederhana dari ide sampai aplikasi berjalan — Anda selalu tahu posisi proyek Anda di setiap langkahnya.",
+      "Lima tahap sederhana dari ide sampai aplikasi berjalan - Anda selalu tahu posisi proyek Anda di setiap langkahnya.",
     steps: [
       {
         step: "01",
@@ -105,7 +105,7 @@ const id = {
         step: "02",
         title: "Proposal & Perencanaan",
         description:
-          "Anda menerima proposal berisi ruang lingkup, timeline, dan estimasi biaya yang jelas — tanpa biaya tersembunyi.",
+          "Anda menerima proposal berisi ruang lingkup, timeline, dan estimasi biaya yang jelas - tanpa biaya tersembunyi.",
       },
       {
         step: "03",
@@ -132,23 +132,23 @@ const id = {
     titleHighlight: "solusi digital",
     titleEnd: "?",
     description:
-      "Ceritakan kebutuhan Anda hari ini. Konsultasi awal gratis — kami bantu carikan bentuk solusi yang paling sesuai dengan tujuan dan anggaran Anda.",
+      "Ceritakan kebutuhan Anda hari ini. Konsultasi awal gratis - kami bantu carikan bentuk solusi yang paling sesuai dengan tujuan dan anggaran Anda.",
     button: "Konsultasi Gratis Sekarang",
   },
   footer: {
     description:
-      "Studio pengembangan software dari Jombang. Kami membantu bisnis dan lembaga pendidikan memulai transformasi digital dengan solusi yang tepat sasaran.",
+      "Studio pengembangan software yang membantu bisnis dan lembaga pendidikan memulai transformasi digital dengan solusi yang tepat sasaran.",
     navigationTitle: "Navigasi",
     productsTitle: "Produk",
     contactTitle: "Kontak",
     copyright: "Seluruh hak cipta dilindungi.",
-    builtWith: "Dibangun dengan Next.js & Tailwind CSS di Jombang.",
+    builtWith: "Dibangun dengan Next.js & Tailwind CSS.",
   },
   contactInfo: {
     addressFull:
       "Jalan Raya Bandung, Kecamatan Diwek, Kabupaten Jombang, Jawa Timur 61471",
     addressShort: "Jl. Raya Bandung, Diwek, Jombang 61471",
-    hours: "Senin – Sabtu, 08.00 – 17.00 WIB",
+    hours: "Senin - Sabtu, 08.00 - 17.00 WIB",
   },
   products: [
     {
@@ -159,7 +159,7 @@ const id = {
       summary:
         "ERP, manajemen inventori, kasir, hingga sistem internal yang dirancang khusus sesuai alur kerja perusahaan Anda.",
       description: [
-        "Setiap bisnis memiliki cara kerja yang unik. Aplikasi enterprise dari Latansa membantu mendigitalisasi proses bisnis Anda — mulai dari pencatatan stok, transaksi kasir, manajemen karyawan, sampai laporan yang biasanya dikerjakan manual lewat spreadsheet.",
+        "Setiap bisnis memiliki cara kerja yang unik. Aplikasi enterprise dari Latansa membantu mendigitalisasi proses bisnis Anda - mulai dari pencatatan stok, transaksi kasir, manajemen karyawan, sampai laporan yang biasanya dikerjakan manual lewat spreadsheet.",
         "Kami membangun sistem dari nol sesuai kebutuhan Anda, sehingga aplikasi benar-benar mengikuti alur kerja perusahaan, bukan sebaliknya. Hasilnya: operasional lebih rapi, data lebih akurat, dan pengambilan keputusan lebih cepat.",
       ],
       features: [
@@ -185,7 +185,7 @@ const id = {
       summary:
         "Sistem informasi akademik, PPDB online, ujian daring, dan portal orang tua untuk sekolah, pesantren, hingga lembaga kursus.",
       description: [
-        "Administrasi sekolah yang masih manual sering kali memakan waktu guru dan staff. Aplikasi pendidikan dari Latansa membantu sekolah, pesantren, dan lembaga kursus mengelola data akademik secara terpusat — dari pendaftaran siswa baru sampai penerbitan rapor.",
+        "Administrasi sekolah yang masih manual sering kali memakan waktu guru dan staff. Aplikasi pendidikan dari Latansa membantu sekolah, pesantren, dan lembaga kursus mengelola data akademik secara terpusat - dari pendaftaran siswa baru sampai penerbitan rapor.",
         "Dirancang dengan antarmuka yang sederhana agar mudah digunakan oleh guru, staf, siswa, maupun orang tua tanpa pelatihan yang rumit.",
       ],
       features: [
@@ -204,7 +204,7 @@ const id = {
       name: "Mobile App",
       tagline: "Aplikasi Android & iOS yang cepat, ringan, dan mudah digunakan",
       summary:
-        "Aplikasi mobile cross-platform untuk bisnis, startup, dan komunitas — lengkap dari development sampai tayang di Play Store.",
+        "Aplikasi mobile cross-platform untuk bisnis, startup, dan komunitas - lengkap dari development sampai tayang di Play Store.",
       description: [
         "Pelanggan Anda ada di smartphone. Mobile app membuat bisnis Anda lebih dekat: notifikasi promo langsung ke pengguna, pemesanan lebih praktis, dan brand semakin melekat di ingatan.",
         "Kami mengembangkan aplikasi dengan pendekatan cross-platform sehingga Android dan iOS bisa diluncurkan lebih cepat dengan biaya lebih hemat, tanpa mengorbankan kualitas pengalaman pengguna.",
@@ -231,10 +231,10 @@ const id = {
       tagline:
         "Company profile dan website usaha yang meyakinkan di mata pelanggan",
       summary:
-        "Homepage profesional, company profile, landing page, dan toko online — cepat, aman, dan mudah ditemukan di Google.",
+        "Homepage profesional, company profile, landing page, dan toko online - cepat, aman, dan mudah ditemukan di Google.",
       description: [
         "Website adalah etalase digital pertama yang dilihat calon pelanggan. Sebelum memutuskan membeli, mereka akan mencari usaha Anda di Google. Website yang rapi dan profesional membuat usaha Anda terlihat kredibel dan dipercaya.",
-        "Kami membangun website dengan desain modern, performa cepat, dan struktur SEO-friendly — plus panel admin sederhana agar Anda bisa mengubah konten sendiri tanpa perlu jadi programmer.",
+        "Kami membangun website dengan desain modern, performa cepat, dan struktur SEO-friendly - plus panel admin sederhana agar Anda bisa mengubah konten sendiri tanpa perlu jadi programmer.",
       ],
       features: [
         "Desain modern, responsif & mobile-first",
@@ -259,12 +259,12 @@ const id = {
     titleHighlight: "Berbagai Kebutuhan",
     titleEnd: "",
     description:
-      "Setiap bisnis dan lembaga punya tantangan berbeda. Karena itu semua produk kami dikembangkan sesuai pesanan — menyesuaikan alur kerja Anda, bukan sebaliknya.",
+      "Setiap bisnis dan lembaga punya tantangan berbeda. Karena itu semua produk kami dikembangkan sesuai pesanan - menyesuaikan alur kerja Anda, bukan sebaliknya.",
     featureHeading: "Fitur Unggulan",
     detailPrefix: "Lihat Detail",
     customTitle: "Tidak menemukan yang Anda cari?",
     customDescription:
-      "Keempat produk di atas hanya titik awal. Ceritakan kebutuhan unik Anda — kami bangun solusi khusus dari nol.",
+      "Keempat produk di atas hanya titik awal. Ceritakan kebutuhan unik Anda - kami bangun solusi khusus dari nol.",
     customButton: "Diskusikan Ide Anda",
   },
   productDetail: {
@@ -280,7 +280,7 @@ const id = {
       "Teknologi dapat menyesuaikan kebutuhan dan sistem yang sudah Anda miliki.",
     interestedTitle: "Tertarik dengan produk ini?",
     interestedDesc:
-      "Konsultasikan sekarang — gratis dan tanpa komitmen. Kami bantu hitung estimasi biaya serta waktunya.",
+      "Konsultasikan sekarang - gratis dan tanpa komitmen. Kami bantu hitung estimasi biaya serta waktunya.",
     interestedButton: "Ajukan Konsultasi Gratis",
     otherProducts: "Produk Lainnya",
     viewAll: "Lihat semua",
@@ -293,15 +293,15 @@ const id = {
       titleHighlight: "Standar yang Besar",
       titleEnd: "",
       description:
-        "Latansa lahir di Jombang dengan satu keyakinan sederhana: bisnis lokal dan lembaga pendidikan juga layak mendapatkan teknologi berkualitas.",
+        "Latansa lahir dengan satu keyakinan sederhana: bisnis lokal dan lembaga pendidikan juga layak mendapatkan teknologi berkualitas.",
     },
     story: {
       eyebrow: "Cerita Kami",
       title: "Dimulai dari Keresahan yang Sering Kami Dengar",
       paragraphs: [
         "\u201cSistem kasirnya sering error.\u201d \u201cData siswa masih dicatat di buku.\u201d \u201cPengen punya aplikasi, tapi jasa pembuatan software itu mahal dan cuma ada di kota besar.\u201d Kalimat-kalimat seperti itulah yang menjadi alasan Latansa hadir.",
-        "Berbasis di Jalan Raya Bandung, Kecamatan Diwek, Jombang, kami mengambil posisi yang jujur: kami studio muda yang sedang merintis. Belum banyak proyek bisa kami pajang — tetapi justru karena itu, setiap proyek yang masuk mendapat perhatian penuh dari seluruh tim, dikerjakan seolah-olah portofolio pertama dan terakhir kami.",
-        "Kami fokus pada empat lini produk: aplikasi enterprise, aplikasi pendidikan, mobile app, dan website profesional — semuanya dibangun sesuai pesanan, dengan proses yang transparan dan harga yang masuk akal bagi UMKM maupun sekolah.",
+        "Berbasis di Jalan Raya Bandung, Kecamatan Diwek, kami mengambil posisi yang jujur: kami studio muda yang sedang merintis. Belum banyak proyek bisa kami pajang - tetapi justru karena itu, setiap proyek yang masuk mendapat perhatian penuh dari seluruh tim, dikerjakan seolah-olah portofolio pertama dan terakhir kami.",
+        "Kami fokus pada empat lini produk: aplikasi enterprise, aplikasi pendidikan, mobile app, dan website profesional - semuanya dibangun sesuai pesanan, dengan proses yang transparan dan harga yang masuk akal bagi UMKM maupun sekolah.",
       ],
     },
     factsTitle: "Sekilas Latansa",
@@ -319,18 +319,18 @@ const id = {
       "Membantu UMKM dan sekolah memulai transformasi digital secara bertahap tanpa memberatkan anggaran.",
       "Membangun produk yang benar-benar mudah digunakan siapa pun, bukan hanya oleh mereka yang melek teknologi.",
       "Menjaga komunikasi yang jujur dan proses yang transparan di setiap proyek.",
-      "Menumbuhkan ekosistem digital lokal, dimulai dari Jombang.",
+      "Menumbuhkan ekosistem digital lokal secara bertahap.",
     ],
     valuesSection: {
       eyebrow: "Nilai Kami",
       title: "Prinsip yang Memandu Setiap Proyek",
       description:
-        "Enam nilai ini menjadi fondasi cara kami bekerja — dari konsultasi pertama sampai aplikasi Anda berjalan.",
+        "Enam nilai ini menjadi fondasi cara kami bekerja - dari konsultasi pertama sampai aplikasi Anda berjalan.",
       items: [
         {
           title: "Integritas",
           description:
-            "Jujur soal kemampuan, waktu pengerjaan, dan biaya. Tidak ada janji berlebihan — hanya komitmen yang kami penuhi.",
+            "Jujur soal kemampuan, waktu pengerjaan, dan biaya. Tidak ada janji berlebihan - hanya komitmen yang kami penuhi.",
         },
         {
           title: "Inovasi Berkelanjutan",
@@ -340,7 +340,7 @@ const id = {
         {
           title: "Kualitas di Setiap Detail",
           description:
-            "Dari tulisan kode, desain antarmuka, sampai cara kami menjawab email — semua dikerjakan dengan teliti.",
+            "Dari tulisan kode, desain antarmuka, sampai cara kami menjawab email - semua dikerjakan dengan teliti.",
         },
         {
           title: "Kolaborasi",
@@ -364,7 +364,7 @@ const id = {
       titleHighlight: "ngobrol santai saja",
       titleEnd: "",
       description:
-        "Tidak perlu persiapan apa pun. Ceritakan rencana atau kendala Anda — kami bantu pikirkan solusinya, gratis.",
+        "Tidak perlu persiapan apa pun. Ceritakan rencana atau kendala Anda - kami bantu pikirkan solusinya, gratis.",
       button: "Konsultasi Gratis Sekarang",
     },
   },
@@ -375,7 +375,7 @@ const id = {
       titleHighlight: "Percakapan",
       titleEnd: " Pertama Kita",
       description:
-        "Ceritakan ide, kebutuhan, atau kendala Anda. Konsultasi awal sepenuhnya gratis — tanpa komitmen apa pun.",
+        "Ceritakan ide, kebutuhan, atau kendala Anda. Konsultasi awal sepenuhnya gratis - tanpa komitmen apa pun.",
     },
     labels: {
       address: "Alamat Kantor",
@@ -385,12 +385,12 @@ const id = {
     quickResponse: {
       title: "Respon cepat di jam kerja",
       description:
-        "Pesan yang masuk pada jam operasional umumnya kami balas dalam hitungan menit sampai jam — bukan hari.",
+        "Pesan yang masuk pada jam operasional umumnya kami balas dalam hitungan menit sampai jam - bukan hari.",
     },
     form: {
       title: "Ceritakan Kebutuhan Anda",
       description:
-        "Isi formulir di bawah — pesan Anda akan terkirim langsung ke tim kami di meone@outlook.co.id.",
+        "Isi formulir di bawah - pesan Anda akan terkirim langsung ke tim kami di meone@outlook.co.id.",
       nameLabel: "Nama Lengkap",
       namePlaceholder: "John Doe",
       emailLabel: "Email",
@@ -412,8 +412,6 @@ const id = {
       errorNote:
         "Terjadi kendala saat mengirim pesan. Silakan coba lagi, atau kirim langsung ke",
     },
-    mapTitle: "Peta lokasi Latansa",
-    openMaps: "Buka di Google Maps →",
     faq: {
       eyebrow: "FAQ",
       title: "Pertanyaan yang Sering Diajukan",
@@ -423,12 +421,12 @@ const id = {
         {
           question: "Berapa biaya pembuatan aplikasi atau website?",
           answer:
-            "Biaya sangat bergantung pada fitur dan kompleksitas yang dibutuhkan. Website company profile umumnya lebih terjangkau dibanding aplikasi enterprise. Ceritakan kebutuhan Anda lewat halaman kontak — konsultasi dan penawaran harga gratis, tanpa komitmen.",
+            "Biaya sangat bergantung pada fitur dan kompleksitas yang dibutuhkan. Website company profile umumnya lebih terjangkau dibanding aplikasi enterprise. Ceritakan kebutuhan Anda lewat halaman kontak - konsultasi dan penawaran harga gratis, tanpa komitmen.",
         },
         {
           question: "Berapa lama proses pengerjaannya?",
           answer:
-            "Website profesional biasanya selesai dalam 1–2 minggu. Mobile app dan aplikasi enterprise menyesuaikan jumlah fiturnya, umumnya 1–3 bulan. Estimasi detail akan kami sertakan di proposal proyek.",
+            "Website profesional biasanya selesai dalam 1-2 minggu. Mobile app dan aplikasi enterprise menyesuaikan jumlah fiturnya, umumnya 1-3 bulan. Estimasi detail akan kami sertakan di proposal proyek.",
         },
         {
           question: "Apakah saya bisa meminta revisi desain?",
@@ -443,7 +441,7 @@ const id = {
         {
           question: "Apakah menerima proyek dari luar Jombang?",
           answer:
-            "Ya. Kami menerima klien dari seluruh Indonesia. Komunikasi dapat dilakukan secara remote melalui email, WhatsApp, atau video call — dan tetap efektif tanpa harus bertemu langsung.",
+            "Ya. Kami menerima klien dari seluruh Indonesia. Komunikasi dapat dilakukan secara remote melalui email, WhatsApp, atau video call - dan tetap efektif tanpa harus bertemu langsung.",
         },
         {
           question: "Bagaimana skema pembayarannya?",
@@ -467,7 +465,7 @@ const en: Dictionary = {
   meta: {
     tagline: "Software Solutions for Business & Education",
     description:
-      "Latansa is a software development company based in Jombang, Indonesia. We help businesses, schools, and SMEs build enterprise applications, education platforms, mobile apps, and professional websites — from free consultation to post-launch support.",
+      "Latansa is a software development company helping businesses, schools, and SMEs build enterprise applications, education platforms, mobile apps, and professional websites - from free consultation to post-launch support.",
   },
   nav: {
     home: "Home",
@@ -480,7 +478,7 @@ const en: Dictionary = {
     titleStart: "Turn Your Ideas Into Digital Reality with ",
     titleHighlight: "Latansa",
     description:
-      "We help businesses and educational institutions build enterprise applications, education platforms, mobile apps, and professional websites — starting from a free consultation all the way to post-launch support.",
+      "We help businesses and educational institutions build enterprise applications, education platforms, mobile apps, and professional websites - starting from a free consultation all the way to post-launch support.",
     primaryCta: "Free Consultation",
     secondaryCta: "Explore Our Products",
     stats: [
@@ -511,24 +509,24 @@ const en: Dictionary = {
     titleHighlight: "One Goal",
     titleEnd: ": Helping You Grow",
     description:
-      "From internal company systems to your business storefront website — everything is designed specifically around your needs, not off-the-shelf templates.",
+      "From internal company systems to your business storefront website - everything is designed specifically around your needs, not off-the-shelf templates.",
   },
   learnMore: "Learn More",
   whyUs: {
     eyebrow: "Why Latansa",
     title: "Why Start With Us?",
     description:
-      "We are a young studio on the rise — and that is exactly our advantage: every project gets our full attention, not just another ticket number.",
+      "We are a young studio on the rise - and that is exactly our advantage: every project gets our full attention, not just another ticket number.",
     items: [
       {
         title: "Friendly Pricing",
         description:
-          "As a growing studio, we offer transparent and realistic pricing — tailored to your needs and budget.",
+          "As a growing studio, we offer transparent and realistic pricing - tailored to your needs and budget.",
       },
       {
         title: "Collaborative Approach",
         description:
-          "You are involved at every stage — from early discussions and design to launch. Not just 'done for you', but built together.",
+          "You are involved at every stage - from early discussions and design to launch. Not just 'done for you', but built together.",
       },
       {
         title: "Modern Technology",
@@ -548,7 +546,7 @@ const en: Dictionary = {
       {
         title: "Local & Easy to Reach",
         description:
-          "Based in Jombang, we are easy to contact and open to face-to-face meetings for clients in the surrounding area.",
+          "We are easy to contact and open to face-to-face meetings for clients in the surrounding area.",
       },
     ],
   },
@@ -556,7 +554,7 @@ const en: Dictionary = {
     eyebrow: "Our Process",
     title: "A Clear & Transparent Workflow",
     description:
-      "Five simple steps from idea to a running application — you always know where your project stands.",
+      "Five simple steps from idea to a running application - you always know where your project stands.",
     steps: [
       {
         step: "01",
@@ -568,7 +566,7 @@ const en: Dictionary = {
         step: "02",
         title: "Proposal & Planning",
         description:
-          "You receive a proposal covering scope, timeline, and clear cost estimates — no hidden fees.",
+          "You receive a proposal covering scope, timeline, and clear cost estimates - no hidden fees.",
       },
       {
         step: "03",
@@ -595,23 +593,23 @@ const en: Dictionary = {
     titleHighlight: "a digital solution",
     titleEnd: "?",
     description:
-      "Tell us what you need today. The initial consultation is free — we help shape the solution that best fits your goals and budget.",
+      "Tell us what you need today. The initial consultation is free - we help shape the solution that best fits your goals and budget.",
     button: "Get a Free Consultation",
   },
   footer: {
     description:
-      "A software development studio from Jombang. We help businesses and educational institutions start their digital transformation with precisely-targeted solutions.",
+      "A software development studio helping businesses and educational institutions start their digital transformation with precisely-targeted solutions.",
     navigationTitle: "Navigation",
     productsTitle: "Products",
     contactTitle: "Contact",
     copyright: "All rights reserved.",
-    builtWith: "Built with Next.js & Tailwind CSS in Jombang.",
+    builtWith: "Built with Next.js & Tailwind CSS.",
   },
   contactInfo: {
     addressFull:
       "Jalan Raya Bandung, Diwek District, Jombang Regency, East Java 61471, Indonesia",
     addressShort: "Jl. Raya Bandung, Diwek, Jombang 61471",
-    hours: "Monday – Saturday, 08.00 – 17.00 WIB (GMT+7)",
+    hours: "Monday - Saturday, 08.00 - 17.00 WIB (GMT+7)",
   },
   products: [
     {
@@ -621,8 +619,8 @@ const en: Dictionary = {
       summary:
         "ERP, inventory management, POS, and internal systems designed specifically around your company's workflow.",
       description: [
-        "Every business works in its own unique way. Enterprise applications from Latansa help digitize your business processes — from stock recording and POS transactions to employee management and reports that are usually done manually through spreadsheets.",
-        "We build systems from scratch according to your requirements, so the application truly follows your company's workflow — not the other way around. The result: tidier operations, more accurate data, and faster decision-making.",
+        "Every business works in its own unique way. Enterprise applications from Latansa help digitize your business processes - from stock recording and POS transactions to employee management and reports that are usually done manually through spreadsheets.",
+        "We build systems from scratch according to your requirements, so the application truly follows your company's workflow - not the other way around. The result: tidier operations, more accurate data, and faster decision-making.",
       ],
       features: [
         "Real-time inventory & stock management",
@@ -647,7 +645,7 @@ const en: Dictionary = {
       summary:
         "Academic information systems, online admissions, e-exams, and parent portals for schools, Islamic boarding schools, and course providers.",
       description: [
-        "Manual school administration often consumes teachers' and staff time. Education applications from Latansa help schools, boarding schools, and course institutions manage academic data centrally — from new student registration to report card issuance.",
+        "Manual school administration often consumes teachers' and staff time. Education applications from Latansa help schools, boarding schools, and course institutions manage academic data centrally - from new student registration to report card issuance.",
         "Designed with simple interfaces so teachers, staff, students, and parents can use it easily without complicated training.",
       ],
       features: [
@@ -671,10 +669,10 @@ const en: Dictionary = {
       name: "Mobile App",
       tagline: "Fast, lightweight Android & iOS applications people love to use",
       summary:
-        "Cross-platform mobile applications for businesses, startups, and communities — complete from development to Play Store publishing.",
+        "Cross-platform mobile applications for businesses, startups, and communities - complete from development to Play Store publishing.",
       description: [
         "Your customers live on their smartphones. A mobile app brings your business closer: promotions delivered straight to users, easier ordering, and a brand that sticks in memory.",
-        "We develop apps using a cross-platform approach so Android and iOS versions can launch faster at lower cost — without sacrificing user experience quality.",
+        "We develop apps using a cross-platform approach so Android and iOS versions can launch faster at lower cost - without sacrificing user experience quality.",
       ],
       features: [
         "Cross-platform: one codebase for Android & iOS",
@@ -697,10 +695,10 @@ const en: Dictionary = {
       name: "Professional Website",
       tagline: "Company profiles and business websites that win customer trust",
       summary:
-        "Professional homepages, company profiles, landing pages, and online stores — fast, secure, and easy to find on Google.",
+        "Professional homepages, company profiles, landing pages, and online stores - fast, secure, and easy to find on Google.",
       description: [
         "A website is the first digital storefront potential customers see. Before deciding to buy, they will search for your business on Google. A neat, professional website makes your business look credible and trustworthy.",
-        "We build websites with modern design, fast performance, and SEO-friendly structure — plus a simple admin panel so you can update content yourself without being a programmer.",
+        "We build websites with modern design, fast performance, and SEO-friendly structure - plus a simple admin panel so you can update content yourself without being a programmer.",
       ],
       features: [
         "Modern, responsive & mobile-first design",
@@ -725,12 +723,12 @@ const en: Dictionary = {
     titleHighlight: "Every Need",
     titleEnd: "",
     description:
-      "Every business and institution faces different challenges. That is why all of our products are built to order — adapting to your workflow, not the other way around.",
+      "Every business and institution faces different challenges. That is why all of our products are built to order - adapting to your workflow, not the other way around.",
     featureHeading: "Key Features",
     detailPrefix: "View Details",
     customTitle: "Can't find what you're looking for?",
     customDescription:
-      "The four products above are only starting points. Tell us your unique needs — we build custom solutions from scratch.",
+      "The four products above are only starting points. Tell us your unique needs - we build custom solutions from scratch.",
     customButton: "Discuss Your Idea",
   },
   productDetail: {
@@ -746,7 +744,7 @@ const en: Dictionary = {
       "Technologies can be adapted to your needs and the systems you already have.",
     interestedTitle: "Interested in this product?",
     interestedDesc:
-      "Consult with us now — free and with no commitment. We help estimate the cost and timeline.",
+      "Consult with us now - free and with no commitment. We help estimate the cost and timeline.",
     interestedButton: "Request a Free Consultation",
     otherProducts: "Other Products",
     viewAll: "View all",
@@ -759,15 +757,15 @@ const en: Dictionary = {
       titleHighlight: "Big Standards",
       titleEnd: "",
       description:
-        "Latansa was born in Jombang with one simple belief: local businesses and educational institutions deserve quality technology too.",
+        "Latansa was born from one simple belief: local businesses and educational institutions deserve quality technology too.",
     },
     story: {
       eyebrow: "Our Story",
       title: "It Started with Frustrations We Kept Hearing",
       paragraphs: [
         "\u201cThe POS system keeps failing.\u201d \u201cStudent data is still recorded in books.\u201d \u201cI want an app, but software development is expensive and only available in big cities.\u201d Sentences like these are exactly why Latansa exists.",
-        "Based on Jalan Raya Bandung, Diwek District, Jombang, we take an honest position: we are a young studio just getting started. We don't have many projects to show off yet — and precisely because of that, every incoming project receives the full attention of our entire team, treated as if it were our first and last portfolio piece.",
-        "We focus on four product lines: enterprise applications, education applications, mobile apps, and professional websites — all built to order, with transparent processes and fair pricing for SMEs and schools alike.",
+        "Based on Jalan Raya Bandung, Diwek District, we take an honest position: we are a young studio just getting started. We don't have many projects to show off yet - and precisely because of that, every incoming project receives the full attention of our entire team, treated as if it were our first and last portfolio piece.",
+        "We focus on four product lines: enterprise applications, education applications, mobile apps, and professional websites - all built to order, with transparent processes and fair pricing for SMEs and schools alike.",
       ],
     },
     factsTitle: "Latansa at a Glance",
@@ -780,23 +778,23 @@ const en: Dictionary = {
     visionLabel: "Vision",
     missionLabel: "Mission",
     visionText:
-      "To become a trusted technology partner helping businesses and educational institutions transform digitally — gradually, affordably, and sustainably.",
+      "To become a trusted technology partner helping businesses and educational institutions transform digitally - gradually, affordably, and sustainably.",
     missionItems: [
       "Help SMEs and schools begin digital transformation step by step without straining their budgets.",
-      "Build products anyone can genuinely use — not just the tech-savvy.",
+      "Build products anyone can genuinely use - not just the tech-savvy.",
       "Keep communication honest and processes transparent in every project.",
-      "Grow the local digital ecosystem, starting from Jombang.",
+      "Grow the local digital ecosystem step by step.",
     ],
     valuesSection: {
       eyebrow: "Our Values",
       title: "Principles That Guide Every Project",
       description:
-        "These six values form the foundation of how we work — from the first consultation until your application is running.",
+        "These six values form the foundation of how we work - from the first consultation until your application is running.",
       items: [
         {
           title: "Integrity",
           description:
-            "Honest about capabilities, timelines, and costs. No overpromising — only commitments we fulfill.",
+            "Honest about capabilities, timelines, and costs. No overpromising - only commitments we fulfill.",
         },
         {
           title: "Continuous Innovation",
@@ -806,7 +804,7 @@ const en: Dictionary = {
         {
           title: "Quality in Every Detail",
           description:
-            "From code, interface design, to how we reply to emails — everything is done carefully.",
+            "From code, interface design, to how we reply to emails - everything is done carefully.",
         },
         {
           title: "Collaboration",
@@ -816,7 +814,7 @@ const en: Dictionary = {
         {
           title: "User-Oriented",
           description:
-            "A great application isn't the most sophisticated one — it's the one your people find easiest to use.",
+            "A great application isn't the most sophisticated one - it's the one your people find easiest to use.",
         },
         {
           title: "Growing Together",
@@ -826,11 +824,11 @@ const en: Dictionary = {
       ],
     },
     cta: {
-      titleStart: "Let's get acquainted — ",
+      titleStart: "Let's get acquainted - ",
       titleHighlight: "just a casual chat",
       titleEnd: "",
       description:
-        "No preparation needed. Share your plans or challenges — we'll gladly help think through the solution, free of charge.",
+        "No preparation needed. Share your plans or challenges - we'll gladly help think through the solution, free of charge.",
       button: "Get a Free Consultation",
     },
   },
@@ -841,7 +839,7 @@ const en: Dictionary = {
       titleHighlight: "Conversation",
       titleEnd: "",
       description:
-        "Share your ideas, needs, or challenges. The initial consultation is completely free — with no obligations.",
+        "Share your ideas, needs, or challenges. The initial consultation is completely free - with no obligations.",
     },
     labels: {
       address: "Office Address",
@@ -851,12 +849,12 @@ const en: Dictionary = {
     quickResponse: {
       title: "Fast response during business hours",
       description:
-        "Messages received during operating hours are usually answered within minutes to hours — not days.",
+        "Messages received during operating hours are usually answered within minutes to hours - not days.",
     },
     form: {
       title: "Tell Us What You Need",
       description:
-        "Fill in the form below — your message will be delivered straight to our team at meone@outlook.co.id.",
+        "Fill in the form below - your message will be delivered straight to our team at meone@outlook.co.id.",
       nameLabel: "Full Name",
       namePlaceholder: "John Doe",
       emailLabel: "Email",
@@ -878,8 +876,6 @@ const en: Dictionary = {
       errorNote:
         "Something went wrong while sending your message. Please try again, or email us directly at",
     },
-    mapTitle: "Map of Latansa location",
-    openMaps: "Open in Google Maps →",
     faq: {
       eyebrow: "FAQ",
       title: "Frequently Asked Questions",
@@ -889,12 +885,12 @@ const en: Dictionary = {
         {
           question: "How much does it cost to build an app or website?",
           answer:
-            "Costs depend heavily on the required features and complexity. A company profile website is generally far more affordable than an enterprise application. Tell us your needs through the contact page — consultation and quotations are free, with no commitment.",
+            "Costs depend heavily on the required features and complexity. A company profile website is generally far more affordable than an enterprise application. Tell us your needs through the contact page - consultation and quotations are free, with no commitment.",
         },
         {
           question: "How long does a project take?",
           answer:
-            "Professional websites usually take 1–2 weeks. Mobile apps and enterprise applications scale with their feature count, typically 1–3 months. Detailed estimates are included in the project proposal.",
+            "Professional websites usually take 1-2 weeks. Mobile apps and enterprise applications scale with their feature count, typically 1-3 months. Detailed estimates are included in the project proposal.",
         },
         {
           question: "Can I request design revisions?",
@@ -909,7 +905,7 @@ const en: Dictionary = {
         {
           question: "Do you accept projects outside Jombang?",
           answer:
-            "Yes. We accept clients from all over Indonesia. Communication happens remotely via email, WhatsApp, or video call — and remains effective without meeting in person.",
+            "Yes. We accept clients from all over Indonesia. Communication happens remotely via email, WhatsApp, or video call - and remains effective without meeting in person.",
         },
         {
           question: "What is the payment scheme?",

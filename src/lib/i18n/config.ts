@@ -18,7 +18,6 @@ export function withLocale(locale: Locale, path: string): string {
 export const site = {
   name: "Latansa",
   email: "meone@outlook.co.id",
-  mapsQuery: "Jalan Raya Bandung, Diwek, Jombang, Jawa Timur",
   socials: [
     { label: "Instagram", href: "#" },
     { label: "Facebook", href: "#" },
@@ -51,7 +50,7 @@ export const productSlugs = [
 
 export type ProductSlug = (typeof productSlugs)[number];
 
-/** Data visual produk — masing-masing punya warna khas yang bersanding dengan hijau logo */
+/** Data visual produk - masing-masing punya warna khas yang bersanding dengan hijau logo */
 export const productMeta: Record<
   ProductSlug,
   { icon: typeof Building2; gradient: string }

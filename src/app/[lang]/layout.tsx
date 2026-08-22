@@ -21,7 +21,7 @@ export async function generateMetadata({
   if (!isLocale(lang)) return {};
 
   const dict = getDictionary(lang);
-  const title = `${site.name} — ${dict.meta.tagline}`;
+  const title = `${site.name} - ${dict.meta.tagline}`;
 
   return {
     title: { default: title, template: `%s | ${site.name}` },

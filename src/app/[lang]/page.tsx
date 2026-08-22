@@ -34,7 +34,7 @@ export async function generateMetadata({
 
 const whyUsIcons = [Wallet, MessagesSquare, Sparkles, Smartphone, LifeBuoy, MapPin];
 
-/* Warna tile berselang-seling — hangat & sejuk bersanding dengan hijau logo */
+/* Warna tile berselang-seling - hangat & sejuk bersanding dengan hijau logo */
 const whyUsTileColors = [
   "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400",
   "bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-400",

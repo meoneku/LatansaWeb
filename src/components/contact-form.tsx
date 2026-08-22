@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CircleAlert, CircleCheck, Send } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
@@ -25,6 +25,12 @@ export function ContactForm({
 }: ContactFormProps) {
   const form = dict.form;
   const [status, setStatus] = useState<Status>("idle");
+  // Anti-bot: catat waktu form dibuka (bot biasanya submit < 1,5 detik)
+  const openedAtRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    openedAtRef.current = Date.now();
+  }, []);
 
   function buildMailto(data: {
     nama: string;
@@ -33,7 +39,7 @@ export function ContactForm({
     kebutuhan: string;
     pesan: string;
   }) {
-    const subject = `[Website Latansa] ${data.kebutuhan} — ${data.nama}`;
+    const subject = `[Website Latansa] ${data.kebutuhan} - ${data.nama}`;
     const body = [
       `Nama: ${data.nama}`,
       `Email: ${data.email}`,
@@ -44,8 +50,8 @@ export function ContactForm({
       data.pesan,
       "",
       locale === "en"
-        ? "— Sent via the Latansa website contact form"
-        : "— Dikirim melalui formulir kontak website Latansa",
+        ? "- Sent via the Latansa website contact form"
+        : "- Dikirim melalui formulir kontak website Latansa",
     ].join("\n");
 
     return `mailto:${email}?subject=${encodeURIComponent(
@@ -65,6 +71,7 @@ export function ContactForm({
       kebutuhan: String(data.get("kebutuhan") ?? ""),
       pesan: String(data.get("pesan") ?? ""),
       company: String(data.get("company") ?? ""),
+      startedAt: openedAtRef.current ?? undefined,
     };
 
     setStatus("sending");
@@ -107,7 +114,7 @@ export function ContactForm({
         {form.description}
       </p>
 
-      {/* Honeypot anti-spam — tersembunyi dari manusia */}
+      {/* Honeypot anti-spam - tersembunyi dari manusia */}
       <input
         type="text"
         name="company"

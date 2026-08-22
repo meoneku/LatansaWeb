@@ -1,5 +1,5 @@
 /**
- * Logo Latansa — "L yang Bertumbuh"
+ * Logo Latansa - "L yang Bertumbuh"
  *
  * Makna di balik bentuknya:
  * - Huruf L sebagai inisial Latansa.
@@ -64,7 +64,7 @@ export function Logo({ locale = "id" }: { locale?: Locale }) {
     <Link
       href={`/${locale}`}
       className="group inline-flex items-center gap-2.5"
-      aria-label="Latansa — kembali ke beranda"
+      aria-label="Latansa - kembali ke beranda"
     >
       <span className="inline-flex">
         <LogoMark className="size-9 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:rotate-3" />

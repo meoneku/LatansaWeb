@@ -13,7 +13,7 @@ type ProductCardProps = {
   learnMoreLabel: string;
 };
 
-/** Kartu produk ringkas — dipakai di beranda & bagian "produk lainnya" */
+/** Kartu produk ringkas - dipakai di beranda & bagian "produk lainnya" */
 export function ProductCard({
   product,
   locale,

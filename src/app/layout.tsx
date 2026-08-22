@@ -12,20 +12,20 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://latansa.id"),
   title: {
-    default: "Latansa — Solusi Software untuk Bisnis & Pendidikan",
+    default: "Latansa - Solusi Software untuk Bisnis & Pendidikan",
     template: "%s | Latansa",
   },
   description:
-    "Jasa pengembangan software di Jombang: aplikasi enterprise, aplikasi pendidikan, mobile app, dan website profesional. Konsultasi gratis.",
+    "Jasa pengembangan software: aplikasi enterprise, aplikasi pendidikan, mobile app, dan website profesional. Konsultasi gratis.",
   keywords: [
-    "software house Jombang",
+    "software house",
     "jasa pembuatan aplikasi",
     "aplikasi enterprise",
     "aplikasi pendidikan",
     "jasa mobile app",
     "jasa website profesional",
-    "company profile Jombang",
-    "programmer Jombang",
+    "company profile",
+    "programmer",
   ],
   authors: [{ name: "Latansa" }],
 };
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={jakarta.variable}
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-slate-700 antialiased dark:bg-slate-950 dark:text-slate-400">
-        {/* Penanda bahwa JS aktif — animasi reveal hanya menyembunyikan konten jika class ini ada */}
+        {/* Penanda bahwa JS aktif - animasi reveal hanya menyembunyikan konten jika class ini ada */}
         <script
           dangerouslySetInnerHTML={{
             __html: "document.documentElement.classList.add('js')",
