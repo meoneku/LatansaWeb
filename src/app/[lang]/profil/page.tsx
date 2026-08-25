@@ -97,7 +97,7 @@ export default async function ProfilPage({ params }: ProfilPageProps) {
                 className="mx-auto mt-6 h-1 w-24 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"
               />
               <p className="mt-4 text-[11px] text-slate-400">
-                latansa.id · {new Date().getFullYear()}
+                latansa.biz.id · {new Date().getFullYear()}
               </p>
             </div>
           </header>
@@ -208,7 +208,7 @@ export default async function ProfilPage({ params }: ProfilPageProps) {
           {/* Kaki dokumen */}
           <footer className="flex items-center justify-between border-t border-slate-100 px-8 py-5 text-[11px] text-slate-400 sm:px-14">
             <span>{dict.footer.builtWith}</span>
-            <span className="font-semibold">latansa.id/{locale}</span>
+            <span className="font-semibold">latansa.biz.id/{locale}</span>
           </footer>
         </article>
       </Reveal>

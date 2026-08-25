@@ -28,7 +28,7 @@ const id = {
       { value: "100%", label: "Mobile-First & Responsif" },
       { value: "<24 Jam", label: "Respon Konsultasi" },
     ],
-    mockUrl: "latansa.id/dashboard",
+    mockUrl: "latansa.biz.id/dashboard",
     liveBadge: "LIVE",
     progress: [
       { label: "Desain UI", width: "90%" },
@@ -739,7 +739,7 @@ const en: Dictionary = {
       { value: "100%", label: "Mobile-First & Responsive" },
       { value: "<24h", label: "Consultation Response" },
     ],
-    mockUrl: "latansa.id/dashboard",
+    mockUrl: "latansa.biz.id/dashboard",
     liveBadge: "LIVE",
     progress: [
       { label: "UI Design", width: "90%" },

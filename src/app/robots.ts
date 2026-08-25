@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://latansa.id/sitemap.xml",
+    sitemap: "https://latansa.biz.id/sitemap.xml",
   };
 }

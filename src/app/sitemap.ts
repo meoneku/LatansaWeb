@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { gameSlugs, locales, productSlugs } from "@/lib/i18n/config";
 
-const BASE = "https://latansa.id";
+const BASE = "https://latansa.biz.id";
 
 const staticPaths = [
   "",

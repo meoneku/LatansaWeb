@@ -98,7 +98,7 @@ export default function OpengraphImage() {
             fontSize: 24,
           }}
         >
-          latansa.id
+          latansa.biz.id
         </div>
       </div>
     ),

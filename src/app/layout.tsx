@@ -14,7 +14,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://latansa.id"),
+  metadataBase: new URL("https://latansa.biz.id"),
   title: {
     default: "Latansa - Solusi Software untuk Bisnis & Pendidikan",
     template: "%s | Latansa",
