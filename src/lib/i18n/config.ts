@@ -1,4 +1,13 @@
-import { Building2, GraduationCap, Globe, Smartphone } from "lucide-react";
+import {
+  Brain,
+  Building2,
+  Gamepad2,
+  GraduationCap,
+  Globe,
+  LayoutGrid,
+  Scissors,
+  Smartphone,
+} from "lucide-react";
 
 export const locales = ["id", "en"] as const;
 
@@ -14,17 +23,30 @@ export function withLocale(locale: Locale, path: string): string {
   return `/${locale}${path === "/" ? "" : path}`;
 }
 
-/** Konfigurasi situs yang tidak berubah antar bahasa */
+/** Konfigurasi situs yang tidak berubah antar bahasa.
+ *  Tautan sosial media dapat diisi lewat env NEXT_PUBLIC_SOCIAL_* */
 export const site = {
   name: "Latansa",
   email: "meone@outlook.co.id",
   socials: [
-    { label: "Instagram", href: "#" },
-    { label: "Facebook", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "GitHub", href: "#" },
+    {
+      label: "Instagram",
+      href: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM ?? "#",
+    },
+    {
+      label: "Facebook",
+      href: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK ?? "#",
+    },
+    {
+      label: "LinkedIn",
+      href: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN ?? "#",
+    },
+    {
+      label: "GitHub",
+      href: process.env.NEXT_PUBLIC_SOCIAL_GITHUB ?? "#",
+    },
   ],
-} as const;
+};
 
 export const techStack = [
   "Next.js",
@@ -72,4 +94,31 @@ export const productMeta: Record<
 
 export function getProductMeta(slug: string) {
   return productMeta[slug as ProductSlug];
+}
+
+export const gameSlugs = [
+  "snake",
+  "memory-match",
+  "tic-tac-toe",
+  "rock-paper-scissors",
+] as const;
+
+export type GameSlug = (typeof gameSlugs)[number];
+
+/** Data visual permainan - selaras dengan palet warna situs */
+export const gameMeta: Record<
+  GameSlug,
+  { icon: typeof Gamepad2; gradient: string }
+> = {
+  snake: { icon: Gamepad2, gradient: "from-emerald-500 to-teal-600" },
+  "memory-match": { icon: Brain, gradient: "from-sky-500 to-blue-600" },
+  "tic-tac-toe": { icon: LayoutGrid, gradient: "from-amber-500 to-orange-600" },
+  "rock-paper-scissors": {
+    icon: Scissors,
+    gradient: "from-rose-500 to-pink-600",
+  },
+};
+
+export function getGameMeta(slug: string) {
+  return gameMeta[slug as GameSlug];
 }

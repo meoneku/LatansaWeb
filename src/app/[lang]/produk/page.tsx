@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Package } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
@@ -41,6 +41,10 @@ export default async function ProdukPage({ params }: ProdukPageProps) {
     <>
       <PageHeader
         eyebrow={p.eyebrow}
+        breadcrumbs={[{ label: dict.nav.home, href: withLocale(locale, "/") }, { label: p.eyebrow }]}
+        eyebrowIcon={Package}
+        badgeVariant="solid"
+        badgeColor="emerald"
         title={
           <>
             {p.titleStart}

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { BackToTop } from "@/components/back-to-top";
+import { ScrollProgress } from "@/components/scroll-progress";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -39,20 +43,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={jakarta.variable}
     >
       <body className="flex min-h-full flex-col bg-white font-sans text-slate-700 antialiased dark:bg-slate-950 dark:text-slate-400">
-        {/* Penanda bahwa JS aktif - animasi reveal hanya menyembunyikan konten jika class ini ada */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ScrollProgress />
+        {/*
+          Penanda bahwa JS aktif - animasi reveal hanya menyembunyikan konten
+          jika penanda ini ada. Memakai next/script agar dieksekusi sebelum
+          hydration tanpa memicu warning <script> di dalam komponen React.
+        */}
+        <Script
+          id="reveal-js-gate"
+          strategy="beforeInteractive"
+        >{`document.documentElement.classList.add('js');`}</Script>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <BackToTop />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { PageTransition } from "@/components/page-transition";
 import { isLocale, locales, site, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 
@@ -52,14 +53,10 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
 
   return (
     <>
-      {/* Sinkronkan atribut lang dokumen dengan locale aktif */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `document.documentElement.lang="${locale}";`,
-        }}
-      />
       <SiteHeader locale={locale} dict={dict} />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1">
+        <PageTransition>{children}</PageTransition>
+      </main>
       <SiteFooter locale={locale} dict={dict} />
     </>
   );

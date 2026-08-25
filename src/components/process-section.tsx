@@ -1,16 +1,32 @@
+import type { LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
+import {
+  type BadgeColor,
+  type BadgeVariant,
+} from "@/components/eyebrow-badge";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 type ProcessSectionProps = {
   dict: Dictionary["processSection"];
+  eyebrowIcon?: LucideIcon;
+  badgeVariant?: BadgeVariant;
+  badgeColor?: BadgeColor;
 };
 
-export function ProcessSection({ dict }: ProcessSectionProps) {
+export function ProcessSection({
+  dict,
+  eyebrowIcon,
+  badgeVariant = "tab",
+  badgeColor = "amber",
+}: ProcessSectionProps) {
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <SectionHeading
         eyebrow={dict.eyebrow}
+        eyebrowIcon={eyebrowIcon}
+        badgeVariant={badgeVariant}
+        badgeColor={badgeColor}
         title={dict.title}
         description={dict.description}
       />

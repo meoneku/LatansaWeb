@@ -1,5 +1,16 @@
+import type { LucideIcon } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import {
+  EyebrowBadge,
+  type BadgeColor,
+  type BadgeVariant,
+} from "@/components/eyebrow-badge";
+
 type SectionHeadingProps = {
   eyebrow: string;
+  eyebrowIcon?: LucideIcon;
+  badgeVariant?: BadgeVariant;
+  badgeColor?: BadgeColor;
   title: React.ReactNode;
   description?: string;
   align?: "center" | "left";
@@ -7,6 +18,9 @@ type SectionHeadingProps = {
 
 export function SectionHeading({
   eyebrow,
+  eyebrowIcon = Sparkles,
+  badgeVariant = "pill",
+  badgeColor = "emerald",
   title,
   description,
   align = "center",
@@ -17,9 +31,14 @@ export function SectionHeading({
         align === "center" ? "mx-auto text-center" : "text-left"
       }`}
     >
-      <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+      <EyebrowBadge
+        icon={eyebrowIcon}
+        variant={badgeVariant}
+        color={badgeColor}
+        align={align}
+      >
         {eyebrow}
-      </span>
+      </EyebrowBadge>
       <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
         {title}
       </h2>

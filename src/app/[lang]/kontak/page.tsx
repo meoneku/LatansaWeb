@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Clock, Mail, MapPin } from "lucide-react";
+import { Clock, HelpCircle, Mail, MapPin, MessageSquareText } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { NewsletterForm } from "@/components/newsletter-form";
+import { OpenStatus } from "@/components/open-status";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { isLocale, site, type Locale } from "@/lib/i18n/config";
+import { isLocale, site, withLocale, type Locale } from "@/lib/i18n/config";
 
 type KontakPageProps = {
   params: Promise<{ lang: string }>;
@@ -60,6 +62,10 @@ export default async function KontakPage({ params }: KontakPageProps) {
     <>
       <PageHeader
         eyebrow={k.header.eyebrow}
+        breadcrumbs={[{ label: dict.nav.home, href: withLocale(locale, "/") }, { label: k.header.eyebrow }]}
+        eyebrowIcon={MessageSquareText}
+        badgeVariant="dashed"
+        badgeColor="cyan"
         title={
           <>
             {k.header.titleStart}
@@ -75,6 +81,10 @@ export default async function KontakPage({ params }: KontakPageProps) {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
           {/* Info kontak */}
           <div className="space-y-5">
+            <Reveal>
+              <OpenStatus dict={dict.kontak} />
+            </Reveal>
+
             {contactItems.map((item, index) => {
               const Icon = item.icon;
               const content = (
@@ -140,6 +150,9 @@ export default async function KontakPage({ params }: KontakPageProps) {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow={k.faq.eyebrow}
+            eyebrowIcon={HelpCircle}
+            badgeVariant="tab"
+            badgeColor="amber"
             title={k.faq.title}
             description={k.faq.description}
           />

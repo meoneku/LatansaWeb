@@ -10,6 +10,9 @@ const id = {
     home: "Beranda",
     about: "Tentang Kami",
     products: "Produk",
+    games: "Permainan",
+    pricing: "Harga",
+    blog: "Blog",
     contact: "Kontak",
     startProject: "Mulai Proyek",
   },
@@ -143,6 +146,8 @@ const id = {
     contactTitle: "Kontak",
     copyright: "Seluruh hak cipta dilindungi.",
     builtWith: "Dibangun dengan Next.js & Tailwind CSS.",
+    newsletterSide:
+      "Maksimal 1-2 email per bulan. Berhenti berlangganan kapan saja dengan satu klik.",
   },
   contactInfo: {
     addressFull:
@@ -387,6 +392,8 @@ const id = {
       description:
         "Pesan yang masuk pada jam operasional umumnya kami balas dalam hitungan menit sampai jam - bukan hari.",
     },
+    openNow: "Buka Sekarang - konsultasi langsung dibalas",
+    closedNow: "Sedang Tutup - tinggalkan pesan, dibalas besok pagi",
     form: {
       title: "Ceritakan Kebutuhan Anda",
       description:
@@ -457,6 +464,249 @@ const id = {
       "Halaman yang Anda cari mungkin sudah dipindahkan atau belum pernah ada. Yuk kembali menjelajah dari beranda.",
     backHome: "Kembali ke Beranda",
   },
+  blog: {
+    header: {
+      eyebrow: "Artikel",
+      titleStart: "Wawasan ",
+      titleHighlight: "Digital",
+      titleEnd: " dari Kami",
+      description:
+        "Tips, panduan, dan sudut pandang seputar website serta transformasi digital untuk bisnis dan pendidikan.",
+    },
+    readMore: "Baca Selengkapnya",
+    backToBlog: "Semua Artikel",
+    minRead: "menit baca",
+    searchPlaceholder: "Cari artikel...",
+    allTags: "Semua",
+    noResults: "Tidak ada artikel yang cocok dengan pencarianmu.",
+  },
+  legal: {
+    privacyTitle: "Kebijakan Privasi",
+    termsTitle: "Syarat & Ketentuan",
+    lastUpdated: "Terakhir diperbarui",
+    contactHeading: "Ada pertanyaan tentang dokumen ini?",
+    contactBody:
+      "Hubungi kami melalui meone@outlook.co.id - kami akan dengan senang hati menjelaskan lebih detail.",
+  },
+  news: {
+    title: "Kabar dari Latansa",
+    desc: "Artikel, tips digital, dan penawaran terbatas - langsung ke email Anda, tanpa spam.",
+    placeholder: "Alamat email Anda",
+    button: "Berlangganan",
+    success: "Terima kasih! Email Anda sudah kami catat.",
+    invalid: "Gagal mencatat email. Coba lagi atau hubungi kami langsung.",
+  },
+  profile: {
+    title: "Profil Perusahaan",
+    tagline: "Solusi Software untuk Bisnis & Pendidikan",
+    download: "Unduh PDF",
+    docNote:
+      "Ringkasan perusahaan satu halaman - siap dibagikan ke mitra, bank, atau investor.",
+  },
+  pricing: {
+    header: {
+      eyebrow: "Harga & Paket",
+      titleStart: "Investasi ",
+      titleHighlight: "Transparan",
+      titleEnd: ", Sesuai Kebutuhan",
+      description:
+        "Harga paket website yang jelas sejak awal. Untuk aplikasi enterprise, pendidikan, maupun mobile app, biaya dihitung berdasarkan ruang lingkup setelah konsultasi gratis.",
+    },
+    popularBadge: "Paling Direkomendasikan",
+    startFrom: "Mulai dari",
+    perProject: "/proyek",
+    ctaPlan: "Konsultasi Sekarang",
+    plans: [
+      {
+        name: "Website UMKM",
+        price: "Rp 1,5 jt",
+        description:
+          "Cocok untuk memulai kehadiran online usaha kecil dan personal branding.",
+        features: [
+          "Website responsif 1-5 halaman",
+          "Domain + hosting 1 tahun",
+          "Desain template profesional",
+          "Tombol WhatsApp & Google Maps",
+          "SEO dasar on-page",
+          "Revisi desain 2 kali",
+          "Garansi perbaikan 30 hari",
+        ],
+      },
+      {
+        name: "Website Bisnis",
+        price: "Rp 3,9 jt",
+        description:
+          "Pilihan terlengkap untuk bisnis yang serius ingin tumbuh di dunia digital.",
+        popular: true,
+        features: [
+          "Semua fitur paket UMKM",
+          "Halaman hingga 12+ sesuai kebutuhan",
+          "Domain .com + hosting lebih cepat",
+          "Panel admin kelola konten sendiri",
+          "Integrasi media sosial & email bisnis",
+          "Revisi desain 4 kali",
+          "Garansi perbaikan 60 hari",
+        ],
+      },
+      {
+        name: "Toko Online",
+        price: "Rp 6,9 jt",
+        description:
+          "Mulai jualan online dengan katalog produk dan pembayaran otomatis.",
+        features: [
+          "Semua fitur paket Bisnis",
+          "Katalog produk tanpa batas",
+          "Keranjang belanja & checkout",
+          "Payment gateway (QRIS, transfer VA)",
+          "Notifikasi pesanan via email",
+          "Pelatihan mengelola toko",
+          "Garansi perbaikan 90 hari",
+        ],
+      },
+    ],
+    custom: {
+      title: "Butuh Aplikasi Enterprise, Pendidikan, atau Mobile App?",
+      description:
+        "Biaya sangat bergantung pada fitur dan kompleksitas. Setelah konsultasi gratis, Anda menerima proposal lengkap berisi ruang lingkup, timeline, dan estimasi biaya yang transparan.",
+      priceLabel: "Mulai dari",
+      price: "Rp 15 jt",
+      cta: "Diskusikan Proyek Anda",
+    },
+    note: "Semua harga adalah titik awal perkiraan dan dapat disesuaikan dengan fitur serta anggaran Anda. Konsultasi selalu gratis - tanpa komitmen apa pun.",
+    calc: {
+      title: "Kalkulator Estimasi Biaya",
+      subtitle:
+        "Pilih jenis proyek dan fitur tambahan untuk mendapatkan rentang estimasi secara instan.",
+      projectLabel: "Jenis Proyek",
+      projects: {
+        web: "Website Company Profile",
+        toko: "Toko Online",
+        mobile: "Aplikasi Mobile",
+        system: "Sistem / Aplikasi Khusus",
+      },
+      addonsLabel: "Fitur Tambahan (opsional)",
+      addons: {
+        admin: "Panel Admin",
+        login: "Login & Multi-user",
+        payment: "Payment Gateway",
+        i18n: "Multi-bahasa",
+        waapi: "Integrasi WhatsApp API",
+        dashboard: "Laporan & Dashboard",
+        push: "Notifikasi Push",
+      },
+      estimateLabel: "Estimasi Rentang Biaya",
+      note: "*Estimasi kasar titik awal - harga final ditentukan setelah diskusi kebutuhan lengkap.",
+      cta: "Ajukan Konsultasi dengan Estimasi Ini",
+    },
+  },
+  games: {
+    header: {
+      eyebrow: "Permainan Web",
+      titleStart: "Sambil Nunggu, ",
+      titleHighlight: "Main Dulu!",
+      titleEnd: "",
+      description:
+        "Empat permainan ringan buatan sendiri untuk mengisi waktu santai - tanpa iklan, tanpa unduhan, langsung main dari browser di HP maupun desktop.",
+    },
+    playNow: "Main Sekarang",
+    howToTitle: "Cara Bermain",
+    backToAll: "Semua Permainan",
+    otherGames: "Permainan Lainnya",
+    items: [
+      {
+        slug: "snake",
+        name: "Snake",
+        tagline:
+          "Klasik abadi: kendalikan ular, makan terus, dan jangan pernah menabrak badan sendiri.",
+        description:
+          "Snake adalah permainan arcade legendaris yang lahir era 70-an. Versi ini dibuat ulang khusus untuk layar sentuh - geser jari atau gunakan tombol arah yang tersedia - dan tetap nyaman dimainkan dengan keyboard di desktop. Skor tertinggi Anda tersimpan otomatis di perangkat.",
+        instructions: [
+          "Geser layar (di HP) atau tekan tombol panah / WASD untuk mengubah arah ular.",
+          "Makan titik hijau agar tubuh memanjang dan skor bertambah satu.",
+          "Kecepatan ular akan meningkat seiring bertambahnya skormu.",
+          "Permainan berakhir jika kepala ular menabrak dinding atau tubuh sendiri.",
+        ],
+      },
+      {
+        slug: "memory-match",
+        name: "Memory Match",
+        tagline:
+          "Latih daya ingat dengan menemukan seluruh pasangan kartu sesedikit mungkin langkah.",
+        description:
+          "Delapan pasang ikon disembunyikan di balik kartu tertutup. Balikkan dua kartu setiap giliran: jika ikonnya sama, pasangan itu tetap terbuka. Cocokkan semuanya dalam hitungan langkah seringkat mungkin dan kalahkan rekor pribadimu!",
+        instructions: [
+          "Ketuk dua kartu untuk membaliknya dan melihat ikonnya.",
+          "Jika kedua ikon sama, kartu tetap terbuka. Jika tidak, kartu tertutup kembali.",
+          "Ingat posisi setiap ikon untuk mencocokkan pasangan berikutnya.",
+          "Seluruh 8 pasangan ditemukan = kamu menang. Makin sedikit langkah, makin hebat!",
+        ],
+      },
+      {
+        slug: "tic-tac-toe",
+        name: "Tic Tac Toe",
+        tagline:
+          "X melawan O melawan komputer - buktikan siapa yang lebih cerdik menyusun tiga garis.",
+        description:
+          "Permainan papan klasik yang tak pernah membosankan. Kamu memainkan X melawan komputer yang dilengkapi AI minimax - artinya komputer berpikir beberapa langkah ke depan dan sulit ditipu. Mampu mengalahkannya adalah tanda strategimu benar-benar matang; hasil seri pun sudah patut dibanggakan.",
+        instructions: [
+          "Kamu memainkan X dan selalu mendapat giliran pertama.",
+          "Ketuk kotak kosong untuk menempatkan tanda X milikmu.",
+          "Susun tiga tanda sejajar - horizontal, vertikal, atau diagonal - untuk menang.",
+          "Komputer membalas dengan AI minimax; mencuri kemenangan darinya adalah prestasi sesungguhnya.",
+        ],
+      },
+      {
+        slug: "rock-paper-scissors",
+        name: "Batu Kertas Gunting",
+        tagline:
+          "Duel kilat melawan komputer: batu menghancurkan gunting, gunting memotong kertas, kertas membungkus batu.",
+        description:
+          "Permainan suit paling populer di dunia, kini melawan komputer dengan pilihan acak di setiap ronde. Skor kemenanganmu dicatat berjalan - seberapa tinggi streak bisa kamu buat sebelum komputer balas menyerang?",
+        instructions: [
+          "Pilih salah satu senjata: batu, kertas, atau gunting.",
+          "Komputer memilih senjatanya secara acak pada saat yang sama.",
+          "Batu mengalahkan gunting, gunting mengalahkan kertas, kertas mengalahkan batu.",
+          "Skor Anda vs komputer tercatat berjalan hingga skornya direset.",
+        ],
+      },
+    ],
+    leaderboard: {
+      title: "Papan Rekor Kamu",
+      snakeLabel: "Skor Snake",
+      memoryLabel: "Langkah Memory",
+      tttLabel: "Menang Tic Tac Toe",
+      movesSuffix: "langkah",
+      resetAll: "Reset semua skor",
+      emptyHint:
+        "Skor tersimpan di perangkat kamu - mainkan game-game di atas untuk mengisinya!",
+    },
+    ui: {
+      score: "Skor",
+      best: "Rekor",
+      start: "Mulai",
+      pause: "Jeda",
+      resume: "Lanjut",
+      restart: "Main Lagi",
+      gameOver: "Permainan Selesai",
+      moves: "Langkah",
+      pairsFound: "Pasangan",
+      you: "Anda",
+      computer: "Komputer",
+      win: "Anda Menang!",
+      lose: "Komputer Menang!",
+      draw: "Hasil Seri!",
+      yourTurn: "Giliran Anda (X)",
+      resetScore: "Reset Skor",
+      chooseWeapon: "Pilih senjatamu!",
+      rock: "Batu",
+      paper: "Kertas",
+      scissors: "Gunting",
+      up: "Atas",
+      down: "Bawah",
+      left: "Kiri",
+      right: "Kanan",
+    },
+  },
 };
 
 export type Dictionary = typeof id;
@@ -471,6 +721,9 @@ const en: Dictionary = {
     home: "Home",
     about: "About Us",
     products: "Products",
+    games: "Games",
+    pricing: "Pricing",
+    blog: "Blog",
     contact: "Contact",
     startProject: "Start a Project",
   },
@@ -604,6 +857,8 @@ const en: Dictionary = {
     contactTitle: "Contact",
     copyright: "All rights reserved.",
     builtWith: "Built with Next.js & Tailwind CSS.",
+    newsletterSide:
+      "At most 1-2 emails per month. Unsubscribe anytime with one click.",
   },
   contactInfo: {
     addressFull:
@@ -851,6 +1106,8 @@ const en: Dictionary = {
       description:
         "Messages received during operating hours are usually answered within minutes to hours - not days.",
     },
+    openNow: "Open Now - consultations answered right away",
+    closedNow: "Closed - leave a message, we reply next morning",
     form: {
       title: "Tell Us What You Need",
       description:
@@ -920,6 +1177,248 @@ const en: Dictionary = {
     description:
       "The page you're looking for may have been moved or never existed. Head back to the homepage to keep exploring.",
     backHome: "Back to Home",
+  },
+  blog: {
+    header: {
+      eyebrow: "Articles",
+      titleStart: "Our ",
+      titleHighlight: "Digital",
+      titleEnd: " Insights",
+      description:
+        "Tips, guides, and perspectives on websites and digital transformation for businesses and education.",
+    },
+    readMore: "Read More",
+    backToBlog: "All Articles",
+    minRead: "min read",
+    searchPlaceholder: "Search articles...",
+    allTags: "All",
+    noResults: "No articles match your search.",
+  },
+  legal: {
+    privacyTitle: "Privacy Policy",
+    termsTitle: "Terms of Service",
+    lastUpdated: "Last updated",
+    contactHeading: "Questions about this document?",
+    contactBody:
+      "Reach us at meone@outlook.co.id - we will gladly explain in more detail.",
+  },
+  news: {
+    title: "News from Latansa",
+    desc: "Articles, digital tips, and limited offers - straight to your inbox, no spam.",
+    placeholder: "Your email address",
+    button: "Subscribe",
+    success: "Thank you! Your email has been noted.",
+    invalid: "Failed to record your email. Try again or contact us directly.",
+  },
+  profile: {
+    title: "Company Profile",
+    tagline: "Software Solutions for Business & Education",
+    download: "Download PDF",
+    docNote: "A one-page company overview - ready to share with partners, banks, or investors.",
+  },
+  pricing: {
+    header: {
+      eyebrow: "Pricing & Packages",
+      titleStart: "A Transparent ",
+      titleHighlight: "Investment",
+      titleEnd: ", Tailored to Your Needs",
+      description:
+        "Clear website package pricing from the start. For enterprise, education, or mobile apps, costs are calculated based on scope after a free consultation.",
+    },
+    popularBadge: "Recommended",
+    startFrom: "Starting from",
+    perProject: "/project",
+    ctaPlan: "Consult Now",
+    plans: [
+      {
+        name: "Starter Website",
+        price: "Rp 1,5 jt",
+        description:
+          "Perfect for small businesses and personal brands starting their online presence.",
+        features: [
+          "Responsive website, 1-5 pages",
+          "Domain + hosting for 1 year",
+          "Professional template design",
+          "WhatsApp button & Google Maps",
+          "Basic on-page SEO",
+          "2 design revisions",
+          "30-day bug-fix warranty",
+        ],
+      },
+      {
+        name: "Business Website",
+        price: "Rp 3,9 jt",
+        description:
+          "The most complete choice for businesses serious about growing digitally.",
+        popular: true,
+        features: [
+          "Everything in the Starter package",
+          "Up to 12+ custom pages",
+          ".com domain + faster hosting",
+          "Admin panel to manage your own content",
+          "Social media & business email integration",
+          "4 design revisions",
+          "60-day bug-fix warranty",
+        ],
+      },
+      {
+        name: "Online Store",
+        price: "Rp 6,9 jt",
+        description:
+          "Start selling online with product catalogs and automatic payments.",
+        features: [
+          "Everything in the Business package",
+          "Unlimited product catalog",
+          "Shopping cart & checkout",
+          "Payment gateway (QRIS, bank transfer VA)",
+          "Order notifications via email",
+          "Store management training",
+          "90-day bug-fix warranty",
+        ],
+      },
+    ],
+    custom: {
+      title: "Need an Enterprise, Education, or Mobile App?",
+      description:
+        "Costs depend heavily on features and complexity. After a free consultation, you receive a complete proposal covering scope, timeline, and transparent cost estimates.",
+      priceLabel: "Starting from",
+      price: "Rp 15 jt",
+      cta: "Discuss Your Project",
+    },
+    note: "All prices are estimated starting points and can be adjusted to fit your features and budget. Consultations are always free - with no obligations.",
+    calc: {
+      title: "Cost Estimate Calculator",
+      subtitle:
+        "Pick a project type and optional features to instantly get an estimated price range.",
+      projectLabel: "Project Type",
+      projects: {
+        web: "Company Profile Website",
+        toko: "Online Store",
+        mobile: "Mobile App",
+        system: "Custom System / Application",
+      },
+      addonsLabel: "Add-on Features (optional)",
+      addons: {
+        admin: "Admin Panel",
+        login: "Login & Multi-user",
+        payment: "Payment Gateway",
+        i18n: "Multi-language",
+        waapi: "WhatsApp API Integration",
+        dashboard: "Reports & Dashboard",
+        push: "Push Notifications",
+      },
+      estimateLabel: "Estimated Price Range",
+      note: "*Rough starting estimate - final pricing is set after a full requirements discussion.",
+      cta: "Consult With This Estimate",
+    },
+  },
+  games: {
+    header: {
+      eyebrow: "Web Games",
+      titleStart: "While You Wait, ",
+      titleHighlight: "Play a Bit!",
+      titleEnd: "",
+      description:
+        "Four lightweight homemade games to fill your downtime - no ads, no downloads, playable straight from the browser on phone or desktop.",
+    },
+    playNow: "Play Now",
+    howToTitle: "How to Play",
+    backToAll: "All Games",
+    otherGames: "Other Games",
+    items: [
+      {
+        slug: "snake",
+        name: "Snake",
+        tagline:
+          "The timeless classic: steer the snake, keep eating, and never crash into your own body.",
+        description:
+          "Snake is a legendary arcade game born in the 1970s. This version is rebuilt for touchscreens - swipe or use the on-screen arrow buttons - while staying comfortable with a keyboard on desktop. Your high score is saved automatically on your device.",
+        instructions: [
+          "Swipe the screen (on mobile) or press arrow keys / WASD to change the snake's direction.",
+          "Eat the green dot to grow longer and add one point to your score.",
+          "The snake speeds up as your score climbs.",
+          "The game ends when the snake's head hits a wall or its own body.",
+        ],
+      },
+      {
+        slug: "memory-match",
+        name: "Memory Match",
+        tagline:
+          "Train your memory by finding every card pair in as few moves as possible.",
+        description:
+          "Eight pairs of icons are hidden behind face-down cards. Flip two cards each turn: if the icons match, that pair stays open. Match them all within the fewest moves possible and beat your personal best!",
+        instructions: [
+          "Tap two cards to flip them and reveal their icons.",
+          "If both icons match, the cards stay open. Otherwise they flip back.",
+          "Memorize each icon's position to match the next pair faster.",
+          "Finding all 8 pairs wins the game. The fewer moves, the better!",
+        ],
+      },
+      {
+        slug: "tic-tac-toe",
+        name: "Tic Tac Toe",
+        tagline:
+          "X versus O versus the computer - prove who is cleverer at lining up three marks.",
+        description:
+          "The classic board game that never gets old. You play X against a computer powered by minimax AI - meaning it thinks several moves ahead and is hard to fool. Beating it proves your strategy truly sharp; even a draw is something to be proud of.",
+        instructions: [
+          "You play X and always get the first turn.",
+          "Tap an empty square to place your X.",
+          "Line up three marks - horizontally, vertically, or diagonally - to win.",
+          "The computer answers with minimax AI; stealing a win from it is a real achievement.",
+        ],
+      },
+      {
+        slug: "rock-paper-scissors",
+        name: "Rock Paper Scissors",
+        tagline:
+          "A lightning duel against the computer: rock crushes scissors, scissors cut paper, paper wraps rock.",
+        description:
+          "The world's most popular hand game, now against a computer making random picks every round. Your win count is tracked continuously - how long a streak can you build before the computer strikes back?",
+        instructions: [
+          "Pick your weapon: rock, paper, or scissors.",
+          "The computer chooses its weapon randomly at the same time.",
+          "Rock beats scissors, scissors beat paper, paper beats rock.",
+          "Your score vs the computer keeps running until you reset it.",
+        ],
+      },
+    ],
+    leaderboard: {
+      title: "Your Scoreboard",
+      snakeLabel: "Snake Score",
+      memoryLabel: "Memory Moves",
+      tttLabel: "Tic Tac Toe Wins",
+      movesSuffix: "moves",
+      resetAll: "Reset all scores",
+      emptyHint:
+        "Scores are stored on your device - play the games above to fill this in!",
+    },
+    ui: {
+      score: "Score",
+      best: "Best",
+      start: "Start",
+      pause: "Pause",
+      resume: "Resume",
+      restart: "Play Again",
+      gameOver: "Game Over",
+      moves: "Moves",
+      pairsFound: "Pairs",
+      you: "You",
+      computer: "Computer",
+      win: "You Win!",
+      lose: "Computer Wins!",
+      draw: "It's a Draw!",
+      yourTurn: "Your turn (X)",
+      resetScore: "Reset Score",
+      chooseWeapon: "Choose your weapon!",
+      rock: "Rock",
+      paper: "Paper",
+      scissors: "Scissors",
+      up: "Up",
+      down: "Down",
+      left: "Left",
+      right: "Right",
+    },
   },
 };
 

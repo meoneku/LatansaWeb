@@ -3,26 +3,49 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowRight,
+  ListChecks,
   LifeBuoy,
   MapPin,
   MessagesSquare,
+  Package,
   Rocket,
   ShieldCheck,
   Smartphone,
   Sparkles,
+  ThumbsUp,
   Wallet,
 } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
+import { CountUp } from "@/components/count-up";
+import { CursorGlow } from "@/components/cursor-glow";
+import { Magnetic } from "@/components/magnetic";
 import { ProcessSection } from "@/components/process-section";
 import { ProductCard } from "@/components/product-card";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
+import { Tilt } from "@/components/tilt-card";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { isLocale, site, techStack, withLocale, type Locale } from "@/lib/i18n/config";
 
 type HomePageProps = {
   params: Promise<{ lang: string }>;
 };
+
+/** Posisi bintang dekoratif pada hero mode gelap */
+const STARS: [number, number, number][] = [
+  [12, 18, 2],
+  [22, 78, 3],
+  [30, 42, 2],
+  [8, 55, 2],
+  [40, 12, 3],
+  [18, 90, 2],
+  [48, 68, 2],
+  [6, 35, 2],
+  [35, 88, 2],
+  [52, 28, 2],
+  [15, 62, 2],
+  [44, 80, 3],
+];
 
 export async function generateMetadata({
   params,
@@ -55,6 +78,7 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       {/* ============ HERO ============ */}
       <section className="relative overflow-hidden">
+        <CursorGlow />
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-grid-pattern [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black,transparent)]"
@@ -63,6 +87,31 @@ export default async function HomePage({ params }: HomePageProps) {
           aria-hidden="true"
           className="absolute -top-32 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-3xl dark:bg-brand-500/15"
         />
+
+        {/* Bintang berkelip + shooting star (mode gelap) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 hidden overflow-visible dark:block"
+        >
+          {STARS.map(([top, left, size], index) => (
+            <span
+              key={index}
+              className="animate-twinkle absolute rounded-full bg-white"
+              style={{
+                top: `${top}%`,
+                left: `${left}%`,
+                width: size,
+                height: size,
+                ["--twinkle-duration" as string]: `${2.4 + ((index * 7) % 30) / 10}s`,
+                ["--twinkle-delay" as string]: `${((index * 13) % 40) / 10}s`,
+              }}
+            />
+          ))}
+          {/* 3 shooting star: kanan atas → kiri bawah, kepala terang didahului ekor */}
+          <span className="animate-shoot absolute left-[74%] top-0 h-[120px] w-[2px] rounded-full bg-gradient-to-b from-transparent via-white/40 to-white shadow-[0_8px_14px_rgba(255,255,255,0.35)] [--shoot-delay:1.2s] [--shoot-duration:7s]" />
+          <span className="animate-shoot absolute left-[56%] top-0 h-[100px] w-[2px] rounded-full bg-gradient-to-b from-transparent via-brand-200/30 to-brand-100 shadow-[0_8px_12px_rgba(167,243,208,0.3)] [--shoot-delay:4.5s] [--shoot-duration:9s]" />
+          <span className="animate-shoot absolute left-[88%] top-0 h-[130px] w-[2px] rounded-full bg-gradient-to-b from-transparent via-white/35 to-cyan-200 shadow-[0_8px_14px_rgba(165,243,252,0.3)] [--shoot-delay:7.5s] [--shoot-duration:11s]" />
+        </div>
 
         <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-28 lg:pt-24">
           <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 xl:gap-16">
@@ -78,13 +127,15 @@ export default async function HomePage({ params }: HomePageProps) {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href={withLocale(locale, "/kontak")}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
-                >
-                  {hero.primaryCta}
-                  <ArrowRight className="size-4" />
-                </Link>
+                <Magnetic>
+                  <Link
+                    href={withLocale(locale, "/kontak")}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
+                  >
+                    {hero.primaryCta}
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </Magnetic>
                 <Link
                   href={withLocale(locale, "/produk")}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-3.5 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-500/50 dark:hover:text-brand-400"
@@ -97,7 +148,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 {hero.stats.map((stat) => (
                   <div key={stat.label}>
                     <dd className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl dark:text-white">
-                      {stat.value}
+                      <CountUp value={stat.value} />
                     </dd>
                     <dt className="mt-1 text-xs leading-snug text-slate-500 sm:text-sm dark:text-slate-400">
                       {stat.label}
@@ -213,21 +264,24 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-      {/* ============ STRIP TEKNOLOGI ============ */}
+      {/* ============ STRIP TEKNOLOGI (MARQUEE) ============ */}
       <section className="border-y border-slate-100 bg-slate-50/60 dark:border-slate-800/70 dark:bg-slate-900/30">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
           <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500">
             {dict.techStrip}
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2.5">
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-brand-300 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-brand-500/50 dark:hover:text-brand-400"
-              >
-                {tech}
-              </span>
-            ))}
+          <div className="group relative mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+            <div className="animate-marquee flex w-max items-center gap-3 pr-3">
+              {[...techStack, ...techStack].map((tech, index) => (
+                <span
+                  key={`${tech}-${index}`}
+                  aria-hidden={index >= techStack.length}
+                  className="whitespace-nowrap rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-brand-300 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-brand-500/50 dark:hover:text-brand-400"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -239,6 +293,9 @@ export default async function HomePage({ params }: HomePageProps) {
       >
         <SectionHeading
           eyebrow={dict.productsSection.eyebrow}
+          eyebrowIcon={Package}
+          badgeVariant="solid"
+          badgeColor="emerald"
           title={
             <>
               {dict.productsSection.titleStart}
@@ -253,11 +310,13 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {dict.products.map((product, index) => (
             <Reveal key={product.slug} delay={index * 80} className="h-full">
-              <ProductCard
-                product={product}
-                locale={locale}
-                learnMoreLabel={dict.learnMore}
-              />
+              <Tilt className="h-full">
+                <ProductCard
+                  product={product}
+                  locale={locale}
+                  learnMoreLabel={dict.learnMore}
+                />
+              </Tilt>
             </Reveal>
           ))}
         </div>
@@ -268,6 +327,8 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <SectionHeading
             eyebrow={dict.whyUs.eyebrow}
+            eyebrowIcon={ThumbsUp}
+            badgeColor="sky"
             title={dict.whyUs.title}
             description={dict.whyUs.description}
           />
@@ -303,7 +364,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* ============ PROSES KERJA ============ */}
-      <ProcessSection dict={dict.processSection} />
+      <ProcessSection dict={dict.processSection} eyebrowIcon={ListChecks} />
 
       {/* ============ CTA ============ */}
       <CtaSection

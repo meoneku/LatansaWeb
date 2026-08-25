@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   BadgeCheck,
   Clock,
+  Download,
+  Gem,
   HeartHandshake,
   Lightbulb,
   Mail,
@@ -61,6 +64,10 @@ export default async function TentangPage({ params }: TentangPageProps) {
     <>
       <PageHeader
         eyebrow={t.header.eyebrow}
+        breadcrumbs={[{ label: dict.nav.home, href: withLocale(locale, "/") }, { label: t.header.eyebrow }]}
+        eyebrowIcon={Users}
+        badgeVariant="solid"
+        badgeColor="rose"
         title={
           <>
             {t.header.titleStart}
@@ -172,6 +179,9 @@ export default async function TentangPage({ params }: TentangPageProps) {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           eyebrow={t.valuesSection.eyebrow}
+          eyebrowIcon={Gem}
+          badgeVariant="dashed"
+          badgeColor="cyan"
           title={t.valuesSection.title}
           description={t.valuesSection.description}
         />
@@ -203,6 +213,24 @@ export default async function TentangPage({ params }: TentangPageProps) {
             );
           })}
         </div>
+      </section>
+
+      {/* ============ UNDUH PROFIL ============ */}
+      <section className="mx-auto max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="flex flex-col items-center justify-between gap-5 rounded-3xl border border-dashed border-emerald-300 bg-emerald-50/50 p-7 text-center sm:flex-row sm:p-8 sm:text-left dark:border-emerald-500/40 dark:bg-emerald-500/5">
+            <p className="text-sm font-semibold leading-relaxed text-slate-700 dark:text-slate-300">
+              {dict.profile.docNote}
+            </p>
+            <Link
+              href={withLocale(locale, "/profil")}
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
+            >
+              <Download className="size-4" />
+              {dict.profile.download}
+            </Link>
+          </div>
+        </Reveal>
       </section>
 
       <CtaSection

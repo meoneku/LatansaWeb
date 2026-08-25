@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Clock, Mail, MapPin } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { NewsletterForm } from "@/components/newsletter-form";
 import {
   FacebookIcon,
   GithubIcon,
@@ -24,7 +25,11 @@ export function SiteFooter({ locale, dict }: SiteFooterProps) {
     { href: withLocale(locale, "/"), label: dict.nav.home },
     { href: withLocale(locale, "/tentang"), label: dict.nav.about },
     { href: withLocale(locale, "/produk"), label: dict.nav.products },
+    { href: withLocale(locale, "/harga"), label: dict.nav.pricing },
+    { href: withLocale(locale, "/games"), label: dict.nav.games },
+    { href: withLocale(locale, "/blog"), label: dict.nav.blog },
     { href: withLocale(locale, "/kontak"), label: dict.nav.contact },
+    { href: withLocale(locale, "/profil"), label: dict.profile.title },
   ];
 
   return (
@@ -119,10 +124,38 @@ export function SiteFooter({ locale, dict }: SiteFooterProps) {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-slate-200 pt-6 text-center text-xs text-slate-500 sm:flex-row dark:border-slate-800 dark:text-slate-500">
+        {/* Newsletter */}
+        <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-slate-200 pt-8 sm:flex-row sm:items-center dark:border-slate-800">
+          <NewsletterForm dict={dict.news} />
+          <p className="text-xs text-slate-400 sm:max-w-[220px] dark:text-slate-500">
+            {dict.footer.newsletterSide}
+          </p>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:text-left dark:border-slate-800 dark:text-slate-500">
           <p>
             © {year} {site.name}. {dict.footer.copyright}
           </p>
+
+          {/* Halaman hukum */}
+          <nav
+            aria-label="Halaman hukum"
+            className="flex flex-wrap items-center justify-center gap-1 rounded-full border border-slate-200 bg-white p-1 dark:border-slate-700 dark:bg-slate-900/60"
+          >
+            <Link
+              href={withLocale(locale, "/privasi")}
+              className="rounded-full px-3 py-1 font-semibold transition hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-500/10 dark:hover:text-brand-400"
+            >
+              {dict.legal.privacyTitle}
+            </Link>
+            <Link
+              href={withLocale(locale, "/ketentuan")}
+              className="rounded-full px-3 py-1 font-semibold transition hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-500/10 dark:hover:text-brand-400"
+            >
+              {dict.legal.termsTitle}
+            </Link>
+          </nav>
+
           <p>{dict.footer.builtWith}</p>
         </div>
       </div>
