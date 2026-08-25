@@ -265,7 +265,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* ============ STRIP TEKNOLOGI (MARQUEE) ============ */}
-      <section className="border-y border-slate-100 bg-slate-50/60 dark:border-slate-800/70 dark:bg-slate-900/30">
+      <section className="cv-auto border-y border-slate-100 bg-slate-50/60 dark:border-slate-800/70 dark:bg-slate-900/30">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
           <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500">
             {dict.techStrip}
@@ -323,7 +323,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* ============ KENAPA LATANSA ============ */}
-      <section className="border-y border-slate-100 bg-slate-50/60 dark:border-slate-800/70 dark:bg-slate-900/30">
+      <section className="cv-auto border-y border-slate-100 bg-slate-50/60 dark:border-slate-800/70 dark:bg-slate-900/30">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <SectionHeading
             eyebrow={dict.whyUs.eyebrow}

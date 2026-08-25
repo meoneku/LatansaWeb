@@ -79,7 +79,7 @@ export default async function TentangPage({ params }: TentangPageProps) {
       />
 
       {/* ============ CERITA ============ */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="cv-auto mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
           <Reveal>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
@@ -176,7 +176,7 @@ export default async function TentangPage({ params }: TentangPageProps) {
       </section>
 
       {/* ============ NILAI KAMI ============ */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="cv-auto mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           eyebrow={t.valuesSection.eyebrow}
           eyebrowIcon={Gem}

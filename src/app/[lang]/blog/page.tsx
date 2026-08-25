@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import { BlogList } from "@/components/blog-list";
 import { CtaSection } from "@/components/cta-section";
 import { PageHeader } from "@/components/page-header";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { isLocale, site, withLocale, type Locale } from "@/lib/i18n/config";
 import { blogPosts } from "@/lib/blog";
+
+// Pencarian & filter butuh interaktivitas - JS-nya dimuat terpisah
+const BlogList = dynamic(
+  () => import("@/components/blog-list").then((m) => m.BlogList),
+  {
+    loading: () => (
+      <div className="mt-12 min-h-[480px] animate-pulse rounded-3xl border border-slate-200 bg-white/60 dark:border-slate-800 dark:bg-slate-900/40" />
+    ),
+  },
+);
 
 type BlogPageProps = {
   params: Promise<{ lang: string }>;
@@ -42,7 +52,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         description={b.header.description}
       />
 
-      <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
+      <section className="cv-auto mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
         <BlogList
           basePath={withLocale(locale, "/blog")}
           ui={{

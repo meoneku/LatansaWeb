@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   Bell,
   Cloud,
@@ -44,14 +44,37 @@ function shuffle(): Card[] {
   return cards;
 }
 
+// Deteksi hydration tanpa setState di dalam effect
+const emptySubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+// Punggung kartu netral untuk render awal server & client (bebas acak)
+const PLACEHOLDER_CARDS: Card[] = Array.from({ length: 16 }, (_, i) => ({
+  key: i,
+  icon: -1,
+}));
+
 export function MemoryGame({ ui }: { ui: Ui }) {
-  const [cards, setCards] = useState<Card[]>(() => shuffle());
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
+  const [cards, setCards] = useState<Card[]>(PLACEHOLDER_CARDS);
   const [open, setOpen] = useState<number[]>([]);
   const [matched, setMatched] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
   const [newRecord, setNewRecord] = useState(false);
+
+  // Acak kartu pada frame pertama setelah mount (bebas warning cascading)
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setCards(shuffle()));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   const locked = open.length === 2;
-  const won = matched.length === cards.length;
+  const won = mounted && matched.length === cards.length && cards.length > 0;
 
   function restart() {
     setCards(shuffle());
@@ -62,7 +85,7 @@ export function MemoryGame({ ui }: { ui: Ui }) {
   }
 
   function flip(key: number) {
-    if (locked || won) return;
+    if (!mounted || locked || won) return;
     if (open.includes(key) || matched.includes(key)) return;
 
     const nextOpen = [...open, key];
@@ -91,7 +114,7 @@ export function MemoryGame({ ui }: { ui: Ui }) {
     }
   }
 
-  const board = useMemo(() => cards, [cards]);
+  const board = cards;
 
   return (
     <div className="flex flex-col items-center gap-5">

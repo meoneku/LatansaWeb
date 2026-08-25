@@ -77,7 +77,7 @@ export default async function KontakPage({ params }: KontakPageProps) {
       />
 
       {/* ============ INFO + FORMULIR ============ */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="cv-auto mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
           {/* Info kontak */}
           <div className="space-y-5">

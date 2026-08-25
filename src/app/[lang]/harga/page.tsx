@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -12,10 +13,19 @@ import {
 } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
 import { PageHeader } from "@/components/page-header";
-import { PriceCalculator } from "@/components/price-calculator";
 import { Reveal } from "@/components/reveal";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { isLocale, site, withLocale, type Locale } from "@/lib/i18n/config";
+
+// Kalkulator berada di bawah lipatan - JS-nya dimuat terpisah
+const PriceCalculator = dynamic(
+  () => import("@/components/price-calculator").then((m) => m.PriceCalculator),
+  {
+    loading: () => (
+      <div className="min-h-[560px] animate-pulse rounded-3xl border border-slate-200 bg-white/60 dark:border-slate-800 dark:bg-slate-900/40" />
+    ),
+  },
+);
 
 type HargaPageProps = {
   params: Promise<{ lang: string }>;
@@ -61,7 +71,7 @@ export default async function HargaPage({ params }: HargaPageProps) {
       />
 
       {/* ============ PAKET WEBSITE ============ */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <section className="cv-auto mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="grid items-stretch gap-6 lg:grid-cols-3 lg:gap-5 xl:gap-6">
           {p.plans.map((plan, index) => {
             const Icon = planIcons[index] ?? Zap;

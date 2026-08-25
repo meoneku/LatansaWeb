@@ -102,6 +102,12 @@ html.js .reveal-visible {
   }
 }
 
+/* Lewati render bagian panjang yang belum masuk viewport (performa) */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
 /* ============ Animasi tambahan ============ */
 
 /* Marquee strip teknologi */

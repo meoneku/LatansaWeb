@@ -1,7 +1,7 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Clock, Mail, MapPin } from "lucide-react";
 import { Logo } from "@/components/logo";
-import { NewsletterForm } from "@/components/newsletter-form";
 import {
   FacebookIcon,
   GithubIcon,
@@ -10,6 +10,16 @@ import {
 } from "@/components/social-icons";
 import { site, withLocale, type Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
+
+// Form newsletter di bawah lipatan - JS-nya dimuat terpisah
+const NewsletterForm = dynamic(
+  () => import("@/components/newsletter-form").then((m) => m.NewsletterForm),
+  {
+    loading: () => (
+      <div className="h-24 w-full max-w-md animate-pulse rounded-2xl bg-slate-200/60 dark:bg-slate-800/60" />
+    ),
+  },
+);
 
 const socialIcons = [InstagramIcon, FacebookIcon, LinkedinIcon, GithubIcon];
 

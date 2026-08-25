@@ -21,7 +21,7 @@ export function ProcessSection({
   badgeColor = "amber",
 }: ProcessSectionProps) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section className="cv-auto mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <SectionHeading
         eyebrow={dict.eyebrow}
         eyebrowIcon={eyebrowIcon}

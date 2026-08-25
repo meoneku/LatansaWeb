@@ -1,34 +1,35 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Cahaya radial lembut yang mengikuti kursor pada hero.
- * Hanya aktif untuk perangkat pointer presisi (desktop).
+ * Div selalu dirender agar hydration konsisten; visibilitas & listener
+ * diatur sepenuhnya dari effect (hanya perangkat pointer presisi).
  */
 export function CursorGlow() {
   const ref = useRef<HTMLDivElement>(null);
-  const [enabled] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(pointer: fine)").matches &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!enabled) return;
-    const parent = ref.current?.parentElement;
-    if (!parent) return;
+    const el = ref.current;
+    const parent = el?.parentElement;
+    if (!el || !parent) return;
+
+    // Lewati layar sentuh & pengguna reduced motion
+    if (
+      !window.matchMedia("(pointer: fine)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
     let raf = 0;
     let x = 0;
     let y = 0;
 
     const render = () => {
-      if (ref.current) {
-        ref.current.style.background = `radial-gradient(360px circle at ${x}px ${y}px, rgba(16,185,129,0.13), rgba(139,92,246,0.07) 45%, transparent 70%)`;
-      }
+      el.style.background = `radial-gradient(360px circle at ${x}px ${y}px, rgba(16,185,129,0.13), rgba(139,92,246,0.07) 45%, transparent 70%)`;
+      el.style.opacity = "1";
     };
 
     const onMove = (event: PointerEvent) => {
@@ -37,9 +38,10 @@ export function CursorGlow() {
       y = event.clientY - rect.top;
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(render);
-      setVisible(true);
     };
-    const onLeave = () => setVisible(false);
+    const onLeave = () => {
+      el.style.opacity = "0";
+    };
 
     parent.addEventListener("pointermove", onMove);
     parent.addEventListener("pointerleave", onLeave);
@@ -48,17 +50,13 @@ export function CursorGlow() {
       parent.removeEventListener("pointermove", onMove);
       parent.removeEventListener("pointerleave", onLeave);
     };
-  }, [enabled]);
-
-  if (!enabled) return null;
+  }, []);
 
   return (
     <div
       ref={ref}
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-0 hidden lg:block transition-opacity duration-500 ${
-        visible ? "opacity-100" : "opacity-0"
-      }`}
+      className="pointer-events-none absolute inset-0 hidden opacity-0 transition-opacity duration-500 lg:block"
     />
   );
 }

@@ -11,6 +11,12 @@ import {
 } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
 import { ProductCard } from "@/components/product-card";
+import {
+  EducationMockup,
+  EnterpriseMockup,
+  MobileAppMockup,
+  WebMockup,
+} from "@/components/product-mockups";
 import { Reveal } from "@/components/reveal";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import {
@@ -115,6 +121,27 @@ export default async function ProductDetailPage({
             </a>
           </div>
         </div>
+      </section>
+
+      {/* ============ MOCKUP PRODUK (ILUSTRASI KONSEP) ============ */}
+      <section className="mx-auto max-w-5xl px-4 pt-14 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-brand-50 via-white to-teal-50 p-6 shadow-sm sm:p-10 dark:border-slate-800 dark:from-slate-900 dark:via-slate-900 dark:to-teal-950/30">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-grid-pattern opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
+            />
+            <p className="relative mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-700/80 dark:text-brand-400/80">
+              Ilustrasi Konsep Antarmuka
+            </p>
+            <div className="relative mx-auto w-full max-w-xl">
+              {product.slug === "aplikasi-enterprise" && <EnterpriseMockup />}
+              {product.slug === "aplikasi-pendidikan" && <EducationMockup />}
+              {product.slug === "mobile-app" && <MobileAppMockup />}
+              {product.slug === "website-profesional" && <WebMockup />}
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* ============ KONTEN UTAMA ============ */}
