@@ -35,8 +35,9 @@ export function OpenStatus({ dict }: { dict: Ui }) {
   useEffect(() => {
     const check = () => {
       const { day, hour } = getJakartaInfo();
-      const isWeekday = day >= 1 && day <= 6;
-      setState(isWeekday && hour >= 8 && hour < 17 ? "open" : "closed");
+      // Buka: Sabtu(6), Minggu(0), Senin(1), Selasa(2), Rabu(3)
+      const isOpenDay = [0, 1, 2, 3, 6].includes(day);
+      setState(isOpenDay && hour >= 8 && hour < 16 ? "open" : "closed");
     };
     check();
     const timer = setInterval(check, 60_000);

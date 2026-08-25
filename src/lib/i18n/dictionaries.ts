@@ -153,7 +153,7 @@ const id = {
     addressFull:
       "Jalan Raya Bandung, Kecamatan Diwek, Kabupaten Jombang, Jawa Timur 61471",
     addressShort: "Jl. Raya Bandung, Diwek, Jombang 61471",
-    hours: "Senin - Sabtu, 08.00 - 17.00 WIB",
+    hours: "Sabtu - Rabu, 08.00 - 16.00 WIB",
   },
   products: [
     {
@@ -864,7 +864,7 @@ const en: Dictionary = {
     addressFull:
       "Jalan Raya Bandung, Diwek District, Jombang Regency, East Java 61471, Indonesia",
     addressShort: "Jl. Raya Bandung, Diwek, Jombang 61471",
-    hours: "Monday - Saturday, 08.00 - 17.00 WIB (GMT+7)",
+    hours: "Saturday - Wednesday, 08.00 - 16.00 WIB (GMT+7)",
   },
   products: [
     {
