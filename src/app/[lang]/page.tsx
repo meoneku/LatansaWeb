@@ -126,11 +126,11 @@ export default async function HomePage({ params }: HomePageProps) {
                 {hero.description}
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Magnetic>
+              <div className="mt-8 flex flex-row flex-wrap gap-3">
+                <Magnetic className="min-w-[148px] flex-1 [&>span]:w-full [&>span]:justify-center">
                   <Link
                     href={withLocale(locale, "/kontak")}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
+                    className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-brand-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
                   >
                     {hero.primaryCta}
                     <ArrowRight className="size-4" />
@@ -138,7 +138,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 </Magnetic>
                 <Link
                   href={withLocale(locale, "/produk")}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-3.5 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-500/50 dark:hover:text-brand-400"
+                  className="inline-flex min-w-[148px] flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-500/50 dark:hover:text-brand-400"
                 >
                   {hero.secondaryCta}
                 </Link>
