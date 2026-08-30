@@ -1,7 +1,27 @@
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { getSupabaseAdmin } from "@/lib/db";
 
 const MAX_BODY_BYTES = 2_000;
+
+/** Simpan email ke tabel newsletter_subscribers; false bila DB tidak dikonfigurasi/gagal */
+async function saveToDb(email: string): Promise<boolean> {
+  try {
+    // upsert (ON CONFLICT DO UPDATE) butuh bypass RLS -> admin client
+    const db = getSupabaseAdmin();
+    if (db) {
+      const { error } = await db.from("newsletter_subscribers").upsert(
+        { email, unsubscribed: false },
+        { onConflict: "email", ignoreDuplicates: false },
+      );
+      if (error) throw error;
+      return true;
+    }
+  } catch (error) {
+    console.error("[newsletter] Gagal simpan ke database:", error);
+  }
+  return false;
+}
 
 function isTelegramConfigured() {
   return Boolean(
@@ -57,6 +77,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
 
+  const saved = await saveToDb(email);
   const sent = await notify(email);
-  return NextResponse.json({ ok: sent });
+  return NextResponse.json({ ok: sent || saved });
 }

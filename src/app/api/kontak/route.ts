@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { site } from "@/lib/i18n/config";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { getSupabaseAdmin } from "@/lib/db";
 
 type ContactPayload = {
   nama?: string;
@@ -75,6 +76,28 @@ async function sendTelegram(payload: {
     console.error("[kontak] Gagal mengirim notifikasi Telegram:", error);
     return false;
   }
+}
+
+/** Simpan pesan kontak ke database; false bila gagal/tidak dikonfigurasi */
+async function saveToDb(payload: {
+  nama: string;
+  email: string;
+  whatsapp: string;
+  kebutuhan: string;
+  pesan: string;
+}): Promise<boolean> {
+  try {
+    // 1) @supabase/server — admin client (RLS ketat: anon punya nol akses)
+    const db = getSupabaseAdmin();
+    if (db) {
+      const { error } = await db.from("contact_messages").insert(payload);
+      if (error) throw error;
+      return true;
+    }
+  } catch (error) {
+    console.error("[kontak] Gagal menyimpan ke database:", error);
+  }
+  return false;
 }
 
 /** Tolak request yang Origin-nya jelas bukan dari situs ini (lapisan CSRF) */
@@ -188,7 +211,10 @@ export async function POST(request: Request) {
 
   const data = { nama, email, whatsapp, kebutuhan, pesan };
 
-  // 1) Notifikasi Telegram (arsip + notifikasi real-time)
+  // 0) Simpan ke database Supabase (arsip permanen)
+  const dbSaved = await saveToDb(data);
+
+  // 1) Notifikasi Telegram (notifikasi real-time)
   const telegramSent = await sendTelegram(data);
 
   // 2) Email via SMTP (opsional)
@@ -237,8 +263,8 @@ export async function POST(request: Request) {
     }
   }
 
-  // Tanpa SMTP: cukup Telegram, atau minta klien membuka aplikasi email
-  if (telegramSent) {
+  // Tanpa SMTP: cukup Telegram/database, atau minta klien membuka aplikasi email
+  if (telegramSent || dbSaved) {
     return NextResponse.json({ ok: true });
   }
 
