@@ -1,6 +1,22 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import {
+  Database,
+  ChevronLeft,
+  ChevronRight,
+  KeyRound,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Plus,
+  ShieldCheck,
+  Trash2,
+  UserCog,
+  Users,
+  XCircle,
+} from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type Tab = "messages" | "subscribers" | "users";
 
@@ -27,6 +43,8 @@ type AdminUser = {
   created_at: string | null;
 };
 
+const PAGE_SIZE = 10;
+
 async function api<T extends object>(
   path: string,
   init?: RequestInit,
@@ -42,11 +60,11 @@ async function api<T extends object>(
   }
 }
 
-const card = "rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900";
-const input = "w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100";
-const btn = "rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300";
-const btnGhost = "rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800";
-const btnDanger = "rounded-lg border border-red-300 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-50 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950";
+const card = "rounded bg-white shadow-md dark:bg-slate-900";
+const input = "w-full rounded border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100";
+const btn = "inline-flex items-center justify-center gap-2 rounded bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 disabled:opacity-50 dark:bg-indigo-500 dark:hover:bg-indigo-400";
+const btnGhost = "inline-flex items-center justify-center gap-1.5 rounded px-3 py-2 text-xs font-medium text-slate-700 transition hover:bg-indigo-50 hover:text-indigo-700 disabled:opacity-50 dark:text-slate-300 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-300";
+const btnDanger = "inline-flex items-center justify-center gap-1.5 rounded px-3 py-2 text-xs font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-50 dark:text-red-400 dark:hover:bg-red-950/40";
 
 export default function WebminPage() {
   const [checking, setChecking] = useState(true);
@@ -66,6 +84,11 @@ export default function WebminPage() {
 
   // panel state
   const [tab, setTab] = useState<Tab>("messages");
+  const [pageByTab, setPageByTab] = useState<Record<Tab, number>>({
+    messages: 1,
+    subscribers: 1,
+    users: 1,
+  });
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [users, setUsers] = useState<AdminUser[]>([]);
@@ -90,15 +113,24 @@ export default function WebminPage() {
   const loadTab = useCallback(async (which: Tab) => {
     if (which === "messages") {
       const res = await api<{ messages?: ContactMessage[] }>("/api/webmin/messages");
-      if (res.ok) setMessages(res.messages ?? []);
+      if (res.ok) {
+        setMessages(res.messages ?? []);
+        setPageByTab((current) => ({ ...current, messages: 1 }));
+      }
       else setPanelError(res.error ?? "load_failed");
     } else if (which === "subscribers") {
       const res = await api<{ subscribers?: Subscriber[] }>("/api/webmin/subscribers");
-      if (res.ok) setSubscribers(res.subscribers ?? []);
+      if (res.ok) {
+        setSubscribers(res.subscribers ?? []);
+        setPageByTab((current) => ({ ...current, subscribers: 1 }));
+      }
       else setPanelError(res.error ?? "load_failed");
     } else {
       const res = await api<{ users?: AdminUser[] }>("/api/webmin/users");
-      if (res.ok) setUsers(res.users ?? []);
+      if (res.ok) {
+        setUsers(res.users ?? []);
+        setPageByTab((current) => ({ ...current, users: 1 }));
+      }
       else setPanelError(res.error ?? "load_failed");
     }
   }, []);
@@ -113,7 +145,7 @@ export default function WebminPage() {
     return () => {
       cancelled = true;
     };
-  }, [authed, tab]);
+  }, [authed, tab, loadTab]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -284,8 +316,14 @@ export default function WebminPage() {
 
   if (checking) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-slate-950">
-        <p className="text-sm text-slate-500">Memeriksa sesi…</p>
+      <main className="flex min-h-screen items-center justify-center bg-[#f5f7fb] dark:bg-slate-950">
+        <div className="fixed right-4 top-4 z-10 rounded-full bg-white/80 p-1 shadow-md backdrop-blur dark:bg-slate-900/80">
+          <ThemeToggle />
+        </div>
+        <div className="flex items-center gap-3 text-sm text-slate-500">
+          <span className="h-5 w-5 animate-spin rounded-full border-2 border-indigo-200 border-t-indigo-600" />
+          Memeriksa sesi…
+        </div>
       </main>
     );
   }
@@ -293,9 +331,20 @@ export default function WebminPage() {
   // ---------------------------------------------------------- login screen
   if (!authed) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4 dark:bg-slate-950">
-        <div className={`${card} w-full max-w-sm space-y-4`}>
-          <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Admin Panel</h1>
+      <main className="flex min-h-screen items-center justify-center bg-[#f5f7fb] px-4 dark:bg-slate-950">
+        <div className="fixed right-4 top-4 z-10 rounded-full bg-white/80 p-1 shadow-md backdrop-blur dark:bg-slate-900/80">
+          <ThemeToggle />
+        </div>
+        <div className={`${card} w-full max-w-sm overflow-hidden`}>
+          <div className="bg-indigo-600 px-6 py-7 text-white dark:bg-indigo-700">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
+              <ShieldCheck size={25} />
+            </div>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-indigo-100">Latansa Webmin</p>
+            <h1 className="mt-1 text-2xl font-medium">Selamat datang</h1>
+            <p className="mt-2 text-sm text-indigo-100">Masuk untuk mengelola data website.</p>
+          </div>
+          <div className="space-y-4 p-6">
           <form className="space-y-3" onSubmit={handleLogin}>
             <input
               className={input}
@@ -315,6 +364,7 @@ export default function WebminPage() {
             {loginError && <p className="text-xs text-red-600 dark:text-red-400">{loginError}</p>}
             {loginNotice && <p className="text-xs text-emerald-600 dark:text-emerald-400">{loginNotice}</p>}
             <button className={`${btn} w-full`} disabled={busy}>
+              <KeyRound size={16} />
               {busy ? "Memproses…" : "Masuk"}
             </button>
           </form>
@@ -361,201 +411,106 @@ export default function WebminPage() {
               />
               {bootError && <p className="text-xs text-red-600 dark:text-red-400">{bootError}</p>}
               <button className={`${btn} w-full`} disabled={busy}>
+                <Plus size={16} />
                 Buat admin
               </button>
             </form>
           )}
+          </div>
         </div>
       </main>
     );
   }
 
-  // ---------------------------------------------------------- panel
-  const tabs: { key: Tab; label: string }[] = [
-    { key: "messages", label: `Pesan Kontak${messages.length ? ` (${messages.length})` : ""}` },
-    { key: "subscribers", label: `Newsletter${subscribers.length ? ` (${subscribers.length})` : ""}` },
-    { key: "users", label: `Admin Users${users.length ? ` (${users.length})` : ""}` },
+  const tabs: { key: Tab; label: string; icon: typeof MessageSquare }[] = [
+    { key: "messages", label: "Pesan Kontak", icon: MessageSquare },
+    { key: "subscribers", label: "Newsletter", icon: Mail },
+    { key: "users", label: "Admin Users", icon: UserCog },
   ];
 
+  const visibleMessages = messages.slice((pageByTab.messages - 1) * PAGE_SIZE, pageByTab.messages * PAGE_SIZE);
+  const visibleSubscribers = subscribers.slice((pageByTab.subscribers - 1) * PAGE_SIZE, pageByTab.subscribers * PAGE_SIZE);
+  const visibleUsers = users.slice((pageByTab.users - 1) * PAGE_SIZE, pageByTab.users * PAGE_SIZE);
+
   return (
-    <main className="mx-auto min-h-screen max-w-5xl bg-slate-50 px-4 py-8 dark:bg-slate-950">
-      <header className="mb-6 flex items-center justify-between">
-        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Admin Panel</h1>
-        <button className={btnGhost} type="button" onClick={handleLogout}>
-          Keluar
-        </button>
-      </header>
-
-      <nav className="mb-4 flex gap-2">
-        {tabs.map((t) => (
-          <button
-            key={t.key}
-            type="button"
-            className={t.key === tab ? btn : btnGhost}
-            onClick={() => setTab(t.key)}
-          >
-            {t.label}
-          </button>
-        ))}
-      </nav>
-
-      {panelError && <p className="mb-4 text-xs text-red-600 dark:text-red-400">{panelError}</p>}
-
-      {tab === "messages" && (
-        <div className="space-y-3">
-          {messages.length === 0 && <p className="text-sm text-slate-500">Belum ada pesan.</p>}
-          {messages.map((m) => (
-            <article key={m.id} className={card}>
-              <div className="mb-2 flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                    {m.nama} <span className="font-normal text-slate-500">· {m.email}</span>
-                  </p>
-                  <p className="text-xs text-slate-500">
-                    {m.created_at ? new Date(m.created_at).toLocaleString("id-ID") : "—"}
-                    {m.whatsapp ? ` · WA: ${m.whatsapp}` : ""}
-                    {m.kebutuhan ? ` · ${m.kebutuhan}` : ""}
-                  </p>
-                </div>
-                <button className={btnDanger} type="button" onClick={() => deleteMessage(m.id)}>
-                  Hapus
-                </button>
-              </div>
-              <p className="whitespace-pre-wrap text-sm text-slate-700 dark:text-slate-300">{m.pesan}</p>
-            </article>
-          ))}
-        </div>
-      )}
-
-      {tab === "subscribers" && (
-        <div className={card}>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500 dark:border-slate-800">
-                <th className="py-2">Email</th>
-                <th className="py-2">Status</th>
-                <th className="py-2">Terdaftar</th>
-                <th className="py-2 text-right">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              {subscribers.map((s) => (
-                <tr key={s.email} className="border-b border-slate-100 dark:border-slate-800/50">
-                  <td className="py-2 text-slate-900 dark:text-slate-100">{s.email}</td>
-                  <td className="py-2">
-                    <span className={s.unsubscribed ? "text-red-500" : "text-emerald-600 dark:text-emerald-400"}>
-                      {s.unsubscribed ? "unsubscribed" : "aktif"}
-                    </span>
-                  </td>
-                  <td className="py-2 text-slate-500">
-                    {s.created_at ? new Date(s.created_at).toLocaleDateString("id-ID") : "—"}
-                  </td>
-                  <td className="py-2 text-right">
-                    <div className="flex justify-end gap-2">
-                      <button className={btnGhost} type="button" onClick={() => toggleSubscriber(s)}>
-                        {s.unsubscribed ? "Subscribe ulang" : "Unsubscribe"}
-                      </button>
-                      <button className={btnDanger} type="button" onClick={() => deleteSubscriber(s.email)}>
-                        Hapus
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              {subscribers.length === 0 && (
-                <tr>
-                  <td colSpan={4} className="py-4 text-center text-slate-500">
-                    Belum ada subscriber.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {tab === "users" && (
-        <div className="space-y-4">
-          <form className={`${card} flex flex-wrap items-end gap-3`} onSubmit={createUser}>
-            <div className="min-w-40 flex-1">
-              <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400" htmlFor="nu-username">
-                Username baru
-              </label>
-              <input
-                id="nu-username"
-                className={input}
-                value={newUser.username}
-                onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
-              />
+    <div className="min-h-screen bg-[#f5f7fb] text-slate-800 dark:bg-[#10121a] dark:text-slate-100">
+      <header className="sticky top-0 z-30 bg-[#3f51b5] text-white shadow-md">
+        <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:px-6">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15"><Database size={21} /></div>
+          <div className="min-w-0"><p className="truncate text-base font-medium leading-tight">Latansa Webmin</p><p className="hidden text-xs text-indigo-100 sm:block">Manajemen data website</p></div>
+          <div className="ml-auto flex items-center gap-2">
+            <div className="hidden items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs sm:flex"><span className="h-2 w-2 rounded-full bg-emerald-300" />Admin</div>
+            <div className="rounded-full bg-white/10 p-0.5">
+              <ThemeToggle />
             </div>
-            <div className="min-w-40 flex-1">
-              <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400" htmlFor="nu-password">
-                Password (min 8)
-              </label>
-              <input
-                id="nu-password"
-                className={input}
-                type="password"
-                autoComplete="new-password"
-                value={newUser.password}
-                onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-              />
-            </div>
-            <button className={btn} disabled={busy}>
-              Tambah
-            </button>
-          </form>
-          {userActionError && <p className="text-xs text-red-600 dark:text-red-400">{userActionError}</p>}
-
-          <div className={card}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500 dark:border-slate-800">
-                  <th className="py-2">Username</th>
-                  <th className="py-2">Status</th>
-                  <th className="py-2">Dibuat</th>
-                  <th className="py-2 text-right">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((u) => (
-                  <tr key={u.username} className="border-b border-slate-100 dark:border-slate-800/50">
-                    <td className="py-2 font-medium text-slate-900 dark:text-slate-100">{u.username}</td>
-                    <td className="py-2">
-                      <span className={u.disabled ? "text-red-500" : "text-emerald-600 dark:text-emerald-400"}>
-                        {u.disabled ? "nonaktif" : "aktif"}
-                      </span>
-                    </td>
-                    <td className="py-2 text-slate-500">
-                      {u.created_at ? new Date(u.created_at).toLocaleDateString("id-ID") : "—"}
-                    </td>
-                    <td className="py-2 text-right">
-                      <div className="flex justify-end gap-2">
-                        <button className={btnGhost} type="button" onClick={() => resetPassword(u)}>
-                          Reset password
-                        </button>
-                        <button className={btnGhost} type="button" onClick={() => toggleUser(u)}>
-                          {u.disabled ? "Aktifkan" : "Nonaktifkan"}
-                        </button>
-                        <button className={btnDanger} type="button" onClick={() => deleteUser(u)}>
-                          Hapus
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-                {users.length === 0 && (
-                  <tr>
-                    <td colSpan={4} className="py-4 text-center text-slate-500">
-                      Belum ada admin user.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+            <button className="inline-flex items-center gap-2 rounded px-3 py-2 text-sm font-medium text-white transition hover:bg-white/10" type="button" onClick={handleLogout}><LogOut size={17} /><span className="hidden sm:inline">Keluar</span></button>
           </div>
         </div>
-      )}
-    </main>
+        <nav className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-2 sm:px-6">
+          {tabs.map((t) => { const Icon = t.icon; const active = t.key === tab; const count = t.key === "messages" ? messages.length : t.key === "subscribers" ? subscribers.length : users.length; return <button key={t.key} type="button" className={`relative flex shrink-0 items-center gap-2 border-b-2 px-3 py-3 text-sm transition sm:px-4 ${active ? "border-white font-medium text-white" : "border-transparent text-indigo-100 hover:bg-white/10 hover:text-white"}`} onClick={() => setTab(t.key)}><Icon size={17} />{t.label}{count > 0 && <span className="rounded-full bg-white/20 px-1.5 py-0.5 text-[10px] leading-none">{count}</span>}</button>; })}
+        </nav>
+      </header>
+
+      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+        <div className="mb-6 flex items-end justify-between gap-4"><div><p className="mb-1 text-xs font-medium uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">Dashboard</p><h1 className="text-2xl font-normal tracking-tight text-slate-900 dark:text-white sm:text-3xl">{tabs.find((item) => item.key === tab)?.label}</h1></div><div className="hidden items-center gap-2 text-sm text-slate-500 sm:flex dark:text-slate-400"><span className="h-2 w-2 rounded-full bg-emerald-500" />{tab === "messages" ? messages.length : tab === "subscribers" ? subscribers.length : users.length} data</div></div>
+        {panelError && <div className="mb-5 flex items-center gap-3 rounded border-l-4 border-red-500 bg-red-50 px-4 py-3 text-sm text-red-700 shadow-sm dark:bg-red-950/30 dark:text-red-300"><XCircle size={18} />{panelError}</div>}
+
+        {tab === "messages" && <div className="space-y-4">{messages.length === 0 && <EmptyState icon={MessageSquare} text="Belum ada pesan kontak." />}{visibleMessages.map((m) => <article key={m.id} className={`${card} overflow-hidden`}><div className="flex items-start justify-between gap-4 border-b border-slate-100 px-4 py-4 sm:px-6 dark:border-slate-800"><div className="flex min-w-0 gap-3"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-sm font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">{m.nama.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">{m.nama}</p><p className="truncate text-xs text-slate-500 dark:text-slate-400">{m.email}</p></div></div><button className={btnDanger} type="button" onClick={() => deleteMessage(m.id)}><Trash2 size={15} /><span className="hidden sm:inline">Hapus</span></button></div><div className="px-4 py-4 sm:px-6"><div className="mb-3 flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400">{m.kebutuhan && <span className="rounded-full bg-indigo-50 px-2.5 py-1 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300">{m.kebutuhan}</span>}{m.whatsapp && <span className="rounded-full bg-slate-100 px-2.5 py-1 dark:bg-slate-800">WA: {m.whatsapp}</span>}<span className="rounded-full bg-slate-100 px-2.5 py-1 dark:bg-slate-800">{m.created_at ? new Date(m.created_at).toLocaleString("id-ID") : "—"}</span></div><p className="whitespace-pre-wrap text-sm leading-6 text-slate-700 dark:text-slate-300">{m.pesan}</p></div></article>)}{messages.length > 0 && <Pagination page={pageByTab.messages} pageCount={Math.ceil(messages.length / PAGE_SIZE)} onChange={(nextPage) => setPageByTab((current) => ({ ...current, messages: nextPage }))} />}</div>}
+
+        {tab === "subscribers" && <div className={`${card} overflow-hidden`}><div className="overflow-x-auto"><table className="w-full min-w-[620px] text-sm"><thead className="bg-slate-50 dark:bg-slate-800/50"><tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500 dark:border-slate-800"><th className="px-4 py-3 font-medium sm:px-6">Email</th><th className="px-4 py-3 font-medium">Status</th><th className="px-4 py-3 font-medium">Terdaftar</th><th className="px-4 py-3 text-right font-medium sm:px-6">Aksi</th></tr></thead><tbody>{visibleSubscribers.map((s) => <tr key={s.email} className="border-b border-slate-100 last:border-0 dark:border-slate-800/60"><td className="px-4 py-4 font-medium text-slate-900 sm:px-6 dark:text-slate-100">{s.email}</td><td className="px-4 py-4"><StatusChip active={!s.unsubscribed} label={s.unsubscribed ? "Unsubscribed" : "Aktif"} /></td><td className="px-4 py-4 text-slate-500 dark:text-slate-400">{s.created_at ? new Date(s.created_at).toLocaleDateString("id-ID") : "—"}</td><td className="px-4 py-4 sm:px-6"><div className="flex justify-end gap-1"><button className={btnGhost} type="button" onClick={() => toggleSubscriber(s)}>{s.unsubscribed ? "Subscribe ulang" : "Unsubscribe"}</button><button className={btnDanger} type="button" onClick={() => deleteSubscriber(s.email)}><Trash2 size={15} /><span className="hidden sm:inline">Hapus</span></button></div></td></tr>)}{subscribers.length === 0 && <tr><td colSpan={4}><EmptyState icon={Mail} text="Belum ada subscriber." /></td></tr>}</tbody></table></div>{subscribers.length > 0 && <Pagination page={pageByTab.subscribers} pageCount={Math.ceil(subscribers.length / PAGE_SIZE)} onChange={(nextPage) => setPageByTab((current) => ({ ...current, subscribers: nextPage }))} />}</div>}
+
+        {tab === "users" && <div className="space-y-5"><form className={`${card} p-4 sm:p-5`} onSubmit={createUser}><div className="mb-4 flex items-center gap-3"><div className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300"><Plus size={18} /></div><div><p className="text-sm font-medium text-slate-900 dark:text-slate-100">Tambah admin</p><p className="text-xs text-slate-500">Buat akses baru untuk tim Anda.</p></div></div><div className="grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end"><div><label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400" htmlFor="nu-username">Username baru</label><input id="nu-username" className={input} value={newUser.username} onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} /></div><div><label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400" htmlFor="nu-password">Password (min 8)</label><input id="nu-password" className={input} type="password" autoComplete="new-password" value={newUser.password} onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} /></div><button className={btn} disabled={busy}><Plus size={16} />Tambah</button></div></form>{userActionError && <p className="text-sm text-red-600 dark:text-red-400">{userActionError}</p>}<div className={`${card} overflow-hidden`}><div className="overflow-x-auto"><table className="w-full min-w-[700px] text-sm"><thead className="bg-slate-50 dark:bg-slate-800/50"><tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500 dark:border-slate-800"><th className="px-4 py-3 font-medium sm:px-6">Username</th><th className="px-4 py-3 font-medium">Status</th><th className="px-4 py-3 font-medium">Dibuat</th><th className="px-4 py-3 text-right font-medium sm:px-6">Aksi</th></tr></thead><tbody>{visibleUsers.map((u) => <tr key={u.username} className="border-b border-slate-100 last:border-0 dark:border-slate-800/60"><td className="px-4 py-4 font-medium text-slate-900 sm:px-6 dark:text-slate-100">{u.username}</td><td className="px-4 py-4"><StatusChip active={!u.disabled} label={u.disabled ? "Nonaktif" : "Aktif"} /></td><td className="px-4 py-4 text-slate-500 dark:text-slate-400">{u.created_at ? new Date(u.created_at).toLocaleDateString("id-ID") : "—"}</td><td className="px-4 py-4 sm:px-6"><div className="flex justify-end gap-1"><button className={btnGhost} type="button" onClick={() => resetPassword(u)}><KeyRound size={14} /><span className="hidden sm:inline">Reset password</span></button><button className={btnGhost} type="button" onClick={() => toggleUser(u)}>{u.disabled ? "Aktifkan" : "Nonaktifkan"}</button><button className={btnDanger} type="button" onClick={() => deleteUser(u)}><Trash2 size={15} /><span className="hidden sm:inline">Hapus</span></button></div></td></tr>)}{users.length === 0 && <tr><td colSpan={4}><EmptyState icon={Users} text="Belum ada admin user." /></td></tr>}</tbody></table></div>{users.length > 0 && <Pagination page={pageByTab.users} pageCount={Math.ceil(users.length / PAGE_SIZE)} onChange={(nextPage) => setPageByTab((current) => ({ ...current, users: nextPage }))} />}</div></div>}
+      </main>
+    </div>
+  );
+}
+
+function StatusChip({ active, label }: { active: boolean; label: string }) {
+  return <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${active ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300" : "bg-red-50 text-red-700 dark:bg-red-950/50 dark:text-red-300"}`}><span className={`h-1.5 w-1.5 rounded-full ${active ? "bg-emerald-500" : "bg-red-500"}`} />{label}</span>;
+}
+
+function EmptyState({ icon: Icon, text }: { icon: typeof MessageSquare; text: string }) {
+  return <div className="flex flex-col items-center justify-center gap-3 px-4 py-12 text-center text-slate-500 dark:text-slate-400"><div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800"><Icon size={22} /></div><p className="text-sm">{text}</p></div>;
+}
+
+function Pagination({
+  page,
+  pageCount,
+  onChange,
+}: {
+  page: number;
+  pageCount: number;
+  onChange: (page: number) => void;
+}) {
+  if (pageCount <= 1) return null;
+
+  return (
+    <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3 dark:border-slate-800">
+      <p className="text-xs text-slate-500 dark:text-slate-400">
+        Halaman {page} dari {pageCount}
+      </p>
+      <div className="flex items-center gap-1">
+        <button
+          className={btnGhost}
+          type="button"
+          aria-label="Halaman sebelumnya"
+          disabled={page === 1}
+          onClick={() => onChange(page - 1)}
+        >
+          <ChevronLeft size={16} />
+          <span className="hidden sm:inline">Sebelumnya</span>
+        </button>
+        <button
+          className={btnGhost}
+          type="button"
+          aria-label="Halaman berikutnya"
+          disabled={page === pageCount}
+          onClick={() => onChange(page + 1)}
+        >
+          <span className="hidden sm:inline">Berikutnya</span>
+          <ChevronRight size={16} />
+        </button>
+      </div>
+    </div>
   );
 }
