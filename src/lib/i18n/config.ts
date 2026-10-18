@@ -68,31 +68,53 @@ export const productSlugs = [
   "aplikasi-pendidikan",
   "mobile-app",
   "website-profesional",
+  "longshort-ai",
 ] as const;
 
 export type ProductSlug = (typeof productSlugs)[number];
 
+export type ProductType = "on-demand" | "ready";
+
+export interface ProductMeta {
+  icon: typeof Building2;
+  gradient: string;
+  type: ProductType;
+  logo?: string;
+  badge?: { id: string; en: string };
+}
+
 /** Data visual produk - masing-masing punya warna khas yang bersanding dengan hijau logo */
-export const productMeta: Record<
-  ProductSlug,
-  { icon: typeof Building2; gradient: string }
-> = {
+export const productMeta: Record<ProductSlug, ProductMeta> = {
   "aplikasi-enterprise": {
     icon: Building2,
     gradient: "from-sky-600 to-blue-700",
+    type: "on-demand",
   },
   "aplikasi-pendidikan": {
     icon: GraduationCap,
     gradient: "from-amber-600 to-orange-700",
+    type: "on-demand",
   },
-  "mobile-app": { icon: Smartphone, gradient: "from-rose-600 to-pink-700" },
+  "mobile-app": {
+    icon: Smartphone,
+    gradient: "from-rose-600 to-pink-700",
+    type: "on-demand",
+  },
   "website-profesional": {
     icon: Globe,
     gradient: "from-cyan-600 to-teal-700",
+    type: "on-demand",
+  },
+  "longshort-ai": {
+    icon: Scissors,
+    gradient: "from-emerald-600 to-teal-700",
+    type: "ready",
+    logo: "/assets/img/LongShortAI.svg",
+    badge: { id: "Produk Jadi", en: "Ready-Made" },
   },
 };
 
-export function getProductMeta(slug: string) {
+export function getProductMeta(slug: string): ProductMeta {
   return productMeta[slug as ProductSlug];
 }
 

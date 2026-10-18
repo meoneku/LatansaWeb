@@ -307,7 +307,7 @@ export default async function HomePage({ params }: HomePageProps) {
           }
           description={dict.productsSection.description}
         />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {dict.products.map((product, index) => (
             <Reveal key={product.slug} delay={index * 80} className="h-full">
               <Tilt className="h-full">

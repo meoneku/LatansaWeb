@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <!-- App Icon Squircle Base -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="#171922" />
+  <rect x="22" y="22" width="468" height="468" rx="106" stroke="#76C457" stroke-width="8" stroke-opacity="0.8" />
+
+  <!-- "Long-Form" 16:9 Landscape Frame (Left/Back) -->
+  <rect x="68" y="166" width="236" height="180" rx="28" fill="#1F232E" stroke="#2A7C13" stroke-width="10" />
+  <!-- Landscape timeline bars -->
+  <rect x="96" y="210" width="76" height="14" rx="7" fill="#76C457" fill-opacity="0.7" />
+  <rect x="96" y="238" width="52" height="14" rx="7" fill="#FBE6C2" fill-opacity="0.8" />
+  <rect x="96" y="302" width="90" height="10" rx="5" fill="#76C457" fill-opacity="0.5" />
+
+  <!-- "Short-Form" 9:16 Vertical Viral Frame (Right/Front Hero) -->
+  <rect x="196" y="88" width="212" height="336" rx="36" fill="#76C457" />
+  <rect x="208" y="100" width="188" height="312" rx="26" fill="#171922" />
+
+  <!-- Play Triangle inside Short Frame -->
+  <path d="M274 206C274 198.4 282.3 193.7 288.9 197.6L348.9 233.6C355.3 237.5 355.3 246.5 348.9 250.4L288.9 286.4C282.3 290.3 274 285.6 274 278V206Z" fill="#FFF8CF" />
+
+  <!-- Caption / Karaoke Pill Bar at Bottom of Short Frame -->
+  <rect x="242" y="344" width="120" height="16" rx="8" fill="#76C457" />
+  <rect x="262" y="370" width="80" height="10" rx="5" fill="#FBE6C2" />
+
+  <!-- AI 4-Point Sparkle Badge (Top Right of Short Frame) -->
+  <path d="M372 114L380 136L402 144L380 152L372 174L364 152L342 144L364 136L372 114Z" fill="#FFF8CF" />
+</svg>

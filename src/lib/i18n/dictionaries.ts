@@ -24,7 +24,7 @@ const id = {
     primaryCta: "Konsultasi Gratis",
     secondaryCta: "Lihat Produk Kami",
     stats: [
-      { value: "4", label: "Lini Produk Digital" },
+      { value: "5", label: "Lini Produk Digital" },
       { value: "100%", label: "Mobile-First & Responsif" },
       { value: "<24 Jam", label: "Respon Konsultasi" },
     ],
@@ -47,11 +47,11 @@ const id = {
   techStrip: "Dibangun dengan Teknologi Modern & Teruji",
   productsSection: {
     eyebrow: "Produk Kami",
-    titleStart: "Empat Lini Produk, ",
+    titleStart: "Lima Lini Produk, ",
     titleHighlight: "Satu Tujuan",
     titleEnd: ": Membantu Anda Tumbuh",
     description:
-      "Dari sistem internal perusahaan sampai website etalase usaha - semua dirancang khusus sesuai kebutuhan, bukan solusi tempelan.",
+      "Dari sistem internal perusahaan, aplikasi desktop bertenaga AI, sampai website etalase usaha - semua dirancang khusus sesuai kebutuhan, bukan solusi tempelan.",
   },
   learnMore: "Selengkapnya",
   whyUs: {
@@ -257,6 +257,37 @@ const id = {
       ],
       tech: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
     },
+    {
+      slug: "longshort-ai",
+      name: "LongShort AI",
+      tagline:
+        "Ubah Video Berjam-jam Menjadi Klip Shorts Viral dalam 5 Menit. Tanpa Edit Manual, Tanpa Biaya Langganan.",
+      summary:
+        "Studio repurposing video otomatis: deteksi momen emas AI, kamera pintar pelacak wajah 9:16, subtitle pop & karaoke kekinian, serta paket judul, caption, dan hashtag siap upload.",
+      description: [
+        "Menonton ulang rekaman webinar atau podcast berdurasi 1-2 jam hanya untuk mencari potongan klip 45 detik memakan waktu hingga berjam-jam. Mengubah orientasi lanskap (16:9) ke vertikal (9:16), menjaga wajah tidak terpotong, dan mengetik subtitle kata per kata sangat repetitif dan membosankan.",
+        "LongShort AI mengintegrasikan seluruh alur kerja repurposing video ke dalam satu aplikasi desktop pintar yang berjalan langsung di komputer Anda. Mengunduh video YouTube atau file lokal, mentranskripsikan suara secara offline dengan Faster-Whisper, mengekstraksi momen viral dengan AI, memposisikan kamera mengikuti wajah pembicara (YOLOv8 & MediaPipe), dan merender subtitle animasi modern ala kreator top dunia.",
+        "100% Bebas biaya langganan bulanan tanpa batasan kuota kredit menit. Anda memegang kendali penuh dengan dukungan model AI lokal (Ollama / LM Studio), API key sendiri (OpenAI, Gemini, Groq, DeepSeek), hingga Mode Prompt Manual yang 100% gratis tanpa API key apa pun.",
+      ],
+      features: [
+        "Deteksi Momen Emas & Hook Score AI (skor potensi viral)",
+        "Auto Face Tracking sinematik 9:16 (YOLOv8 & MediaPipe)",
+        "Animasi Subtitle Pop Zoom & Karaoke dinamis (zero-overlap)",
+        "Social Kit Otomatis: 3 judul viral, caption & hashtag siap upload",
+        "Transkripsi Faster-Whisper offline & Silero VAD (100% aman)",
+        "Koreksi kata cerdas & render ulang per-klip super cepat",
+        "Fleksibilitas kanvas 9:16 & Split-Screen mode video gaming",
+        "Bebas langganan bulanan & dukungan Mode Prompt Manual gratis",
+      ],
+      idealFor: [
+        "Podcaster & Acara Talkshow",
+        "YouTuber & Edukator Webinar",
+        "Live Streamer & Gamer",
+        "Agensi Konten & Video Repurposer",
+        "Pengusaha & Pembicara Publik",
+      ],
+      tech: ["Tauri", "Rust", "React", "TypeScript", "Faster-Whisper", "YOLOv8", "FFmpeg"],
+    },
   ],
   productsIndex: {
     eyebrow: "Produk Kami",
@@ -264,13 +295,20 @@ const id = {
     titleHighlight: "Berbagai Kebutuhan",
     titleEnd: "",
     description:
-      "Setiap bisnis dan lembaga punya tantangan berbeda. Karena itu semua produk kami dikembangkan sesuai pesanan - menyesuaikan alur kerja Anda, bukan sebaliknya.",
+      "Temukan produk software siap pakai atau bangun aplikasi khusus yang disesuaikan dengan alur kerja bisnis dan institusi Anda.",
     featureHeading: "Fitur Unggulan",
     detailPrefix: "Lihat Detail",
     customTitle: "Tidak menemukan yang Anda cari?",
     customDescription:
-      "Keempat produk di atas hanya titik awal. Ceritakan kebutuhan unik Anda - kami bangun solusi khusus dari nol.",
+      "Butuh fitur atau aplikasi khusus di luar produk di atas? Ceritakan kebutuhan unik Anda - kami siap membangun solusi kustom dari nol.",
     customButton: "Diskusikan Ide Anda",
+    categories: {
+      readyMade: "LongShort AI",
+      readyMadeSubtitle: "Aplikasi dan software yang sudah jadi dan siap langsung diunduh serta digunakan.",
+      onDemand: "Solusi Software",
+      onDemandSubtitle: "Layanan pengembangan software khusus yang dibangun dari nol sesuai alur kerja bisnis Anda.",
+      downloadNow: "Unduh Sekarang",
+    },
   },
   productDetail: {
     backToAll: "Semua Produk",
@@ -290,6 +328,10 @@ const id = {
     otherProducts: "Produk Lainnya",
     viewAll: "Lihat semua",
     viewAllMobile: "Lihat semua produk",
+    readyDownloadTitle: "Unduh Installer",
+    readyDownloadSubtitle: "Pilih installer yang sesuai dengan sistem operasi komputer Anda.",
+    directDownload: "Download Installer",
+    releaseNotesTitle: "Catatan Rilis",
   },
   tentang: {
     header: {
@@ -735,7 +777,7 @@ const en: Dictionary = {
     primaryCta: "Free Consultation",
     secondaryCta: "Explore Our Products",
     stats: [
-      { value: "4", label: "Digital Product Lines" },
+      { value: "5", label: "Digital Product Lines" },
       { value: "100%", label: "Mobile-First & Responsive" },
       { value: "<24h", label: "Consultation Response" },
     ],
@@ -758,11 +800,11 @@ const en: Dictionary = {
   techStrip: "Built with Modern & Proven Technologies",
   productsSection: {
     eyebrow: "Our Products",
-    titleStart: "Four Product Lines, ",
+    titleStart: "Five Product Lines, ",
     titleHighlight: "One Goal",
     titleEnd: ": Helping You Grow",
     description:
-      "From internal company systems to your business storefront website - everything is designed specifically around your needs, not off-the-shelf templates.",
+      "From internal company systems, AI-powered desktop software, to your business storefront website - everything is designed specifically around your needs, not off-the-shelf templates.",
   },
   learnMore: "Learn More",
   whyUs: {
@@ -971,6 +1013,37 @@ const en: Dictionary = {
       ],
       tech: ["Next.js", "Tailwind CSS", "TypeScript", "Vercel"],
     },
+    {
+      slug: "longshort-ai",
+      name: "LongShort AI",
+      tagline:
+        "Turn Hours of Video into Viral Shorts in 5 Minutes. Zero Manual Editing, Zero Subscriptions.",
+      summary:
+        "Automated video repurposing studio: AI golden moment detection, 9:16 smart face-tracking camera, dynamic pop & karaoke subtitles, plus ready-to-post titles, captions, and hashtags.",
+      description: [
+        "Rewatching 1-2 hour webinars or podcast recordings just to find a 45-second highlight clip takes hours. Reformatting landscape (16:9) to vertical (9:16), keeping faces centered, and manually typing subtitles word-for-word is tedious and repetitive.",
+        "LongShort AI streamlines your entire video repurposing pipeline into an intelligent desktop app running locally on your computer. Download YouTube or local videos, transcribe audio offline with Faster-Whisper, extract viral hooks with AI, keep speakers in frame with smart face tracking (YOLOv8 & MediaPipe), and burn dynamic animated subtitles styled after top global creators.",
+        "100% Free of monthly subscriptions with zero credit limits. Stay in total control with local AI models (Ollama / LM Studio), your own API keys (OpenAI, Gemini, Groq, DeepSeek), or 100% free Manual Prompt Mode requiring no API keys at all.",
+      ],
+      features: [
+        "AI Golden Moment & Hook Score detection (viral potential analysis)",
+        "Cinematic 9:16 Auto Face Tracking (YOLOv8 & MediaPipe)",
+        "Dynamic Pop Zoom & Karaoke subtitle animations (zero-overlap)",
+        "Automated Social Kit: 3 viral titles, captions & hashtags ready to post",
+        "Offline Faster-Whisper transcription & Silero VAD (100% private)",
+        "Smart in-app word correction & ultra-fast single clip re-render",
+        "Canvas 9:16 layout flexibility & Split-Screen gaming mode",
+        "Zero subscription lock-in & 100% free Manual Prompt Mode",
+      ],
+      idealFor: [
+        "Podcasters & Talk Show Hosts",
+        "YouTubers & Webinar Educators",
+        "Live Streamers & Gaming Creators",
+        "Content Agencies & Video Repurposers",
+        "Entrepreneurs & Public Speakers",
+      ],
+      tech: ["Tauri", "Rust", "React", "TypeScript", "Faster-Whisper", "YOLOv8", "FFmpeg"],
+    },
   ],
   productsIndex: {
     eyebrow: "Our Products",
@@ -978,13 +1051,20 @@ const en: Dictionary = {
     titleHighlight: "Every Need",
     titleEnd: "",
     description:
-      "Every business and institution faces different challenges. That is why all of our products are built to order - adapting to your workflow, not the other way around.",
+      "Explore ready-made software products or build custom applications tailored to your business and institutional workflow.",
     featureHeading: "Key Features",
     detailPrefix: "View Details",
     customTitle: "Can't find what you're looking for?",
     customDescription:
-      "The four products above are only starting points. Tell us your unique needs - we build custom solutions from scratch.",
+      "Need specific features or custom systems beyond the products above? Tell us your unique needs - we build bespoke solutions from scratch.",
     customButton: "Discuss Your Idea",
+    categories: {
+      readyMade: "LongShort AI",
+      readyMadeSubtitle: "Finished software applications ready to download and use immediately.",
+      onDemand: "Software Solutions",
+      onDemandSubtitle: "Custom software development services built from scratch tailored to your business needs.",
+      downloadNow: "Download Now",
+    },
   },
   productDetail: {
     backToAll: "All Products",
@@ -1004,6 +1084,10 @@ const en: Dictionary = {
     otherProducts: "Other Products",
     viewAll: "View all",
     viewAllMobile: "View all products",
+    readyDownloadTitle: "Download Installer",
+    readyDownloadSubtitle: "Choose the installer matching your operating system.",
+    directDownload: "Download Installer",
+    releaseNotesTitle: "Release Notes",
   },
   tentang: {
     header: {

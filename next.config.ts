@@ -71,6 +71,26 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  async redirects() {
+    return [
+      {
+        source: "/download/windows",
+        destination: "/download/longshort-ai/windows",
+        permanent: false,
+      },
+      {
+        source: "/download/mac-arm64",
+        destination: "/download/longshort-ai/mac-arm64",
+        permanent: false,
+      },
+      {
+        source: "/download/mac-intel",
+        destination: "/download/longshort-ai/mac-intel",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -1,4 +1,3 @@
-import type { ProductSlug } from "@/lib/i18n/config";
 
 /** Kerangka jendela browser generik */
 function BrowserFrame({
@@ -264,3 +263,13 @@ export function WebMockup() {
     </BrowserFrame>
   );
 }
+
+import { LongShortAiScreenshots } from "@/components/longshort-ai-screenshots";
+
+/* ============ 5. LONGSHORT AI STUDIO (DESKTOP) ============ */
+export function LongShortAiMockup() {
+  return <LongShortAiScreenshots />;
+}
+
+export { LongShortAiScreenshots };
+

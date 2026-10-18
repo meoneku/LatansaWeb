@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Clock, HelpCircle, Mail, MapPin, MessageSquareText } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { FaqAccordion } from "@/components/faq-accordion";
-import { NewsletterForm } from "@/components/newsletter-form";
 import { OpenStatus } from "@/components/open-status";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";

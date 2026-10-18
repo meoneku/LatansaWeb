@@ -5,12 +5,15 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  Download,
   Mail,
   MessageSquareText,
   UserCheck,
 } from "lucide-react";
+import Image from "next/image";
 import { CtaSection } from "@/components/cta-section";
 import { ProductCard } from "@/components/product-card";
+import { LongShortAiScreenshots } from "@/components/longshort-ai-screenshots";
 import {
   EducationMockup,
   EnterpriseMockup,
@@ -18,6 +21,7 @@ import {
   WebMockup,
 } from "@/components/product-mockups";
 import { Reveal } from "@/components/reveal";
+import { fetchLatestRelease } from "@/lib/releases";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import {
   getProductMeta,
@@ -68,6 +72,11 @@ export default async function ProductDetailPage({
   const Icon = meta.icon;
   const d = dict.productDetail;
   const otherProducts = dict.products.filter((item) => item.slug !== slug);
+  const release =
+    product.slug === "longshort-ai"
+      ? await fetchLatestRelease("longshort-ai")
+      : null;
+  const version = release?.version ?? "1.0.1";
 
   return (
     <>
@@ -87,13 +96,44 @@ export default async function ProductDetailPage({
           </Link>
 
           <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-            <span
-              className={`inline-flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br ${meta.gradient} text-white shadow-xl`}
-            >
-              <Icon className="size-8" />
-            </span>
+            {meta.logo ? (
+              <div className="inline-flex size-20 shrink-0 items-center justify-center rounded-3xl bg-slate-900 p-2.5 shadow-xl ring-2 ring-emerald-500/30">
+                <Image
+                  src={meta.logo}
+                  alt={product.name}
+                  width={80}
+                  height={80}
+                  className="size-16 object-contain"
+                  priority
+                />
+              </div>
+            ) : (
+              <span
+                className={`inline-flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br ${meta.gradient} text-white shadow-xl`}
+              >
+                <Icon className="size-8" />
+              </span>
+            )}
             <div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] dark:text-white">
+              <div className="flex items-center gap-2">
+                <span
+                  className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider ${
+                    product.slug === "longshort-ai"
+                      ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300"
+                      : "bg-brand-100 text-brand-800 dark:bg-brand-500/20 dark:text-brand-300"
+                  }`}
+                >
+                  {product.slug === "longshort-ai"
+                    ? "Desktop Application"
+                    : dict.productsIndex.categories.onDemand}
+                </span>
+                {product.slug === "longshort-ai" && (
+                  <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
+                    v{version}
+                  </span>
+                )}
+              </div>
+              <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] dark:text-white">
                 {product.name}
               </h1>
               <p className="mt-2 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-400">
@@ -102,43 +142,73 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href={withLocale(locale, "/kontak")}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
-            >
-              <MessageSquareText className="size-4" />
-              {d.consultCta}
-            </Link>
-            <a
-              href={`mailto:${site.email}?subject=${encodeURIComponent(
-                `${d.emailSubjectPrefix} ${product.name}`,
-              )}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-500/50 dark:hover:text-brand-400"
-            >
-              <Mail className="size-4" />
-              {d.emailCta}
-            </a>
-          </div>
+          {product.slug === "longshort-ai" ? (
+            <div className="mt-8 space-y-3">
+              <div className="flex flex-wrap items-center gap-3">
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                <a
+                  href="/download/longshort-ai/windows"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-emerald-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/30 transition hover:-translate-y-0.5 hover:bg-emerald-500 active:scale-95"
+                >
+                  <Download className="size-4" />
+                  Download Windows (.exe)
+                </a>
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                <a
+                  href="/download/longshort-ai/mac-arm64"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white active:scale-95"
+                >
+                  <Download className="size-4" />
+                  macOS Apple Silicon (.dmg)
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href={withLocale(locale, "/kontak")}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
+              >
+                <MessageSquareText className="size-4" />
+                {d.consultCta}
+              </Link>
+              <a
+                href={`mailto:${site.email}?subject=${encodeURIComponent(
+                  `${d.emailSubjectPrefix} ${product.name}`,
+                )}`}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-500/50 dark:hover:text-brand-400"
+              >
+                <Mail className="size-4" />
+                {d.emailCta}
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* ============ MOCKUP PRODUK (ILUSTRASI KONSEP) ============ */}
-      <section className="mx-auto max-w-5xl px-4 pt-14 sm:px-6 lg:px-8">
+      {/* ============ MOCKUP / SCREENSHOT PRODUK ============ */}
+      <section className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-brand-50 via-white to-teal-50 p-6 shadow-sm sm:p-10 dark:border-slate-800 dark:from-slate-900 dark:via-slate-900 dark:to-teal-950/30">
+          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-brand-50 via-white to-teal-50 p-4 shadow-sm sm:p-8 dark:border-slate-800 dark:from-slate-900 dark:via-slate-900 dark:to-teal-950/30">
             <div
               aria-hidden="true"
               className="absolute inset-0 bg-grid-pattern opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
             />
-            <p className="relative mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-700/80 dark:text-brand-400/80">
-              Ilustrasi Konsep Antarmuka
-            </p>
-            <div className="relative mx-auto w-full max-w-xl">
+            {product.slug !== "longshort-ai" && (
+              <p className="relative mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-700/80 dark:text-brand-400/80">
+                Ilustrasi Konsep Antarmuka
+              </p>
+            )}
+            <div
+              className={`relative mx-auto w-full ${
+                product.slug === "longshort-ai" ? "max-w-4xl" : "max-w-xl"
+              }`}
+            >
               {product.slug === "aplikasi-enterprise" && <EnterpriseMockup />}
               {product.slug === "aplikasi-pendidikan" && <EducationMockup />}
               {product.slug === "mobile-app" && <MobileAppMockup />}
               {product.slug === "website-profesional" && <WebMockup />}
+              {product.slug === "longshort-ai" && <LongShortAiScreenshots />}
             </div>
           </div>
         </Reveal>
@@ -223,21 +293,78 @@ export default async function ProductDetailPage({
             </div>
           </Reveal>
 
-          <Reveal delay={140}>
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-700 to-cyan-700 p-7 text-white">
-              <h3 className="text-lg font-bold">{d.interestedTitle}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-sky-50">
-                {d.interestedDesc}
-              </p>
-              <Link
-                href={withLocale(locale, "/kontak")}
-                className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-sky-800 transition hover:-translate-y-0.5 hover:bg-sky-50"
-              >
-                {d.interestedButton}
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </Reveal>
+          {product.slug === "longshort-ai" ? (
+            <Reveal delay={140}>
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-800 via-teal-800 to-slate-900 p-7 text-white shadow-xl ring-1 ring-emerald-500/30">
+                <div className="flex items-center gap-3">
+                  {meta.logo && (
+                    <div className="rounded-xl bg-slate-950/80 p-1.5 shadow-sm">
+                      <Image
+                        src={meta.logo}
+                        alt={product.name}
+                        width={40}
+                        height={40}
+                        className="size-8 object-contain"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="text-base font-bold text-white">
+                      {d.readyDownloadTitle}
+                    </h3>
+                    <p className="text-xs text-emerald-200">
+                      {locale === "en" ? `Release v${version}` : `Rilis v${version}`}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-3 text-xs leading-relaxed text-emerald-100">
+                  {d.readyDownloadSubtitle}
+                </p>
+
+                <div className="mt-5 space-y-2">
+                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                  <a
+                    href="/download/longshort-ai/windows"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-emerald-950 shadow-md transition hover:bg-emerald-50 active:scale-95"
+                  >
+                    <Download className="size-3.5" />
+                    <span>Download Windows (.exe)</span>
+                  </a>
+                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                  <a
+                    href="/download/longshort-ai/mac-arm64"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-950/50 px-4 py-2 text-xs font-semibold text-white transition hover:bg-emerald-900 active:scale-95"
+                  >
+                    <Download className="size-3.5" />
+                    <span>macOS Apple Silicon (.dmg)</span>
+                  </a>
+                </div>
+
+                <div className="mt-4 border-t border-emerald-700/60 pt-3 text-[11px] text-emerald-200/90">
+                  <p className="font-semibold text-white">Spesifikasi Minimum:</p>
+                  <p className="mt-0.5">Windows 10/11 64-bit / macOS 12+</p>
+                  <p>RAM 8GB • Akselerasi GPU (CUDA/Metal)</p>
+                </div>
+              </div>
+            </Reveal>
+          ) : (
+            <Reveal delay={140}>
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-700 to-cyan-700 p-7 text-white">
+                <h3 className="text-lg font-bold">{d.interestedTitle}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-sky-50">
+                  {d.interestedDesc}
+                </p>
+                <Link
+                  href={withLocale(locale, "/kontak")}
+                  className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-sky-800 transition hover:-translate-y-0.5 hover:bg-sky-50"
+                >
+                  {d.interestedButton}
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </Reveal>
+          )}
         </aside>
       </div>
 
@@ -277,11 +404,65 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <CtaSection
-        cta={dict.cta}
-        email={site.email}
-        contactHref={withLocale(locale, "/kontak")}
-      />
+      {product.slug === "longshort-ai" ? (
+        <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 px-6 py-14 text-center shadow-xl shadow-emerald-900/25 sm:px-12 sm:py-16">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-grid-pattern opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
+              />
+              <div className="relative">
+                <div className="mx-auto mb-4 inline-flex size-16 items-center justify-center rounded-2xl bg-white/10 p-2 backdrop-blur-sm">
+                  {meta.logo && (
+                    <Image
+                      src={meta.logo}
+                      alt={product.name}
+                      width={56}
+                      height={56}
+                      className="size-12 object-contain"
+                    />
+                  )}
+                </div>
+                <h2 className="mx-auto max-w-2xl text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                  {locale === "en"
+                    ? "Start Repurposing Your Videos with LongShort AI"
+                    : "Mulai Buat Video Pendek Otomatis dengan LongShort AI"}
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-emerald-100 sm:text-lg">
+                  {locale === "en"
+                    ? "Download the desktop installer now. Enjoy 100% offline processing, local privacy, and zero cloud limits."
+                    : "Unduh installer desktop sekarang dan nikmati pemrosesan 100% lokal di komputer Anda tanpa batas kuota."}
+                </p>
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                  <a
+                    href="/download/longshort-ai/windows"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-emerald-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-50 sm:w-auto"
+                  >
+                    <Download className="size-4" />
+                    Download Windows (.exe)
+                  </a>
+                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                  <a
+                    href="/download/longshort-ai/mac-arm64"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+                  >
+                    <Download className="size-4" />
+                    macOS Apple Silicon (.dmg)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+      ) : (
+        <CtaSection
+          cta={dict.cta}
+          email={site.email}
+          contactHref={withLocale(locale, "/kontak")}
+        />
+      )}
     </>
   );
 }

@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Clock, Mail, MapPin } from "lucide-react";
 import { Logo } from "@/components/logo";
@@ -10,16 +9,6 @@ import {
 } from "@/components/social-icons";
 import { site, withLocale, type Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
-
-// Form newsletter di bawah lipatan - JS-nya dimuat terpisah
-const NewsletterForm = dynamic(
-  () => import("@/components/newsletter-form").then((m) => m.NewsletterForm),
-  {
-    loading: () => (
-      <div className="h-24 w-full max-w-md animate-pulse rounded-2xl bg-slate-200/60 dark:bg-slate-800/60" />
-    ),
-  },
-);
 
 const socialIcons = [InstagramIcon, FacebookIcon, LinkedinIcon, GithubIcon];
 
@@ -134,13 +123,6 @@ export function SiteFooter({ locale, dict }: SiteFooterProps) {
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-slate-200 pt-8 sm:flex-row sm:items-center dark:border-slate-800">
-          <NewsletterForm dict={dict.news} />
-          <p className="text-xs text-slate-400 sm:max-w-[220px] dark:text-slate-500">
-            {dict.footer.newsletterSide}
-          </p>
-        </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:text-left dark:border-slate-800 dark:text-slate-500">
           <p>
