@@ -273,3 +273,8 @@ export function LongShortAiMockup() {
 
 export { LongShortAiScreenshots };
 
+import { SnakeGoMockup } from "@/components/snake-go-mockup";
+
+/* ============ 6. SNAKE GO (DESKTOP ARCADE) ============ */
+export { SnakeGoMockup };
+

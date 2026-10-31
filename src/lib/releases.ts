@@ -10,6 +10,7 @@ export interface ReleaseInfo {
     windows_x64: string;
     macos_arm64: string;
     macos_intel: string;
+    linux?: string;
   };
 }
 
@@ -35,6 +36,11 @@ const DEFAULT_PRODUCTS: Record<string, ProductConfig> = {
     owner: "meoneku",
     repo: "auto-clipper",
     name: "LongShort AI",
+  },
+  "snake-go": {
+    owner: "meoneku",
+    repo: "snake-go",
+    name: "Snake Go",
   },
 };
 
@@ -141,6 +147,7 @@ export async function fetchLatestRelease(
         windows_x64: `https://latansa.biz.id/download/${slug}/windows`,
         macos_arm64: `https://latansa.biz.id/download/${slug}/mac-arm64`,
         macos_intel: `https://latansa.biz.id/download/${slug}/mac-intel`,
+        linux: `https://latansa.biz.id/download/${slug}/linux`,
       },
     };
   } catch {

@@ -69,6 +69,7 @@ export const productSlugs = [
   "mobile-app",
   "website-profesional",
   "longshort-ai",
+  "snake-go",
 ] as const;
 
 export type ProductSlug = (typeof productSlugs)[number];
@@ -111,6 +112,13 @@ export const productMeta: Record<ProductSlug, ProductMeta> = {
     type: "ready",
     logo: "/assets/img/LongShortAI.svg",
     badge: { id: "Produk Jadi", en: "Ready-Made" },
+  },
+  "snake-go": {
+    icon: Gamepad2,
+    gradient: "from-teal-600 via-emerald-600 to-green-700",
+    type: "ready",
+    logo: "/assets/img/SnakeGo.svg",
+    badge: { id: "Game Desktop", en: "Desktop Game" },
   },
 };
 

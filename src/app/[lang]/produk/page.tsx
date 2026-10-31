@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle2, Download, Package } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
 import { PageHeader } from "@/components/page-header";
+import { SnakeGoMockup } from "@/components/snake-go-mockup";
 import { Reveal } from "@/components/reveal";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import {
@@ -64,26 +65,26 @@ export default async function ProdukPage({ params }: ProdukPageProps) {
       />
 
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 space-y-20 sm:space-y-28">
-        {/* ============ 1. LONGSHORT AI ============ */}
-        <section aria-labelledby="ready-made-heading">
-          <Reveal>
-            <div className="mb-10 border-b border-slate-200 pb-6 dark:border-slate-800">
-              <h2
-                id="ready-made-heading"
-                className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl dark:text-white"
-              >
-                LongShort AI
-              </h2>
-            </div>
-          </Reveal>
+        {/* ============ 1. PRODUK SOFTWARE ============ */}
+        <section aria-labelledby="ready-made-heading" className="space-y-16 sm:space-y-20">
+          {readyProducts.map((product) => {
+            const meta = getProductMeta(product.slug);
+            const topFeatures = product.features.slice(0, 4);
 
-          <div className="space-y-12">
-            {readyProducts.map((product) => {
-              const meta = getProductMeta(product.slug);
-              const topFeatures = product.features.slice(0, 4);
+            return (
+              <div key={product.slug} className="space-y-8">
+                <Reveal>
+                  <div className="border-b border-slate-200 pb-5 dark:border-slate-800">
+                    <h2
+                      id={`${product.slug}-heading`}
+                      className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl dark:text-white"
+                    >
+                      {product.name}
+                    </h2>
+                  </div>
+                </Reveal>
 
-              return (
-                <Reveal key={product.slug}>
+                <Reveal>
                   <div className="overflow-hidden rounded-3xl border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-50/40 via-white to-teal-50/30 p-6 shadow-xl shadow-emerald-950/5 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/20 sm:p-10">
                     <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
                       {/* Left: Info */}
@@ -102,7 +103,7 @@ export default async function ProdukPage({ params }: ProdukPageProps) {
                           ) : null}
                           <div>
                             <span className="rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
-                              Desktop Application
+                              {meta?.badge?.[locale] ?? "Desktop Application"}
                             </span>
                             <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl dark:text-white">
                               {product.name}
@@ -132,23 +133,30 @@ export default async function ProdukPage({ params }: ProdukPageProps) {
                         </div>
 
                         {/* Direct Download & Detail Links */}
-                        <div className="flex flex-wrap items-center gap-3 pt-3">
-                          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                        <div className="flex flex-wrap items-center gap-2.5 pt-3">
                           <a
-                            href="/download/longshort-ai/windows"
-                            className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-600/20 transition hover:-translate-y-0.5 hover:bg-emerald-500 active:scale-95"
+                            href={`/download/${product.slug}/windows`}
+                            className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-emerald-600/20 transition hover:-translate-y-0.5 hover:bg-emerald-500 active:scale-95"
                           >
                             <Download className="size-3.5" />
-                            <span>Download Windows (.exe)</span>
+                            <span>Windows (.exe)</span>
                           </a>
-                          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                           <a
-                            href="/download/longshort-ai/mac-arm64"
-                            className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-xs font-bold text-slate-800 shadow-xs transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white active:scale-95"
+                            href={`/download/${product.slug}/mac-arm64`}
+                            className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 shadow-xs transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white active:scale-95"
                           >
                             <Download className="size-3.5" />
                             <span>macOS (.dmg)</span>
                           </a>
+                          {product.slug === "snake-go" && (
+                            <a
+                              href={`/download/${product.slug}/linux`}
+                              className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 shadow-xs transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white active:scale-95"
+                            >
+                              <Download className="size-3.5" />
+                              <span>Linux</span>
+                            </a>
+                          )}
                           <Link
                             href={withLocale(locale, `/produk/${product.slug}`)}
                             className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 transition hover:gap-2.5 hover:underline dark:text-brand-400"
@@ -157,54 +165,87 @@ export default async function ProdukPage({ params }: ProdukPageProps) {
                             <ArrowRight className="size-3.5" />
                           </Link>
                         </div>
+                        {product.slug === "snake-go" && (
+                          <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-slate-500 dark:text-slate-400">
+                            <span className="font-semibold text-slate-700 dark:text-slate-300">Terminal CLI:</span>
+                            <a
+                              href={`/download/${product.slug}/windows-terminal`}
+                              className="underline decoration-slate-300 underline-offset-2 hover:text-emerald-600 dark:hover:text-emerald-400"
+                            >
+                              Windows
+                            </a>
+                            <span>•</span>
+                            <a
+                              href={`/download/${product.slug}/mac-terminal`}
+                              className="underline decoration-slate-300 underline-offset-2 hover:text-emerald-600 dark:hover:text-emerald-400"
+                            >
+                              macOS
+                            </a>
+                            <span>•</span>
+                            <a
+                              href={`/download/${product.slug}/linux-terminal`}
+                              className="underline decoration-slate-300 underline-offset-2 hover:text-emerald-600 dark:hover:text-emerald-400"
+                            >
+                              Linux
+                            </a>
+                          </div>
+                        )}
                       </div>
 
-                      {/* Right: Real Screenshot Preview */}
+                      {/* Right: Preview Visual */}
                       <div className="lg:col-span-6">
-                        <Link
-                          href={withLocale(locale, `/produk/${product.slug}`)}
-                          className="group/img block overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl transition hover:border-emerald-500/50 dark:border-slate-700/80 dark:bg-slate-950"
-                        >
-                          <div className="mb-2 flex items-center justify-between px-2 pt-1 text-[10px] text-slate-500 dark:text-slate-400">
-                            <div className="flex gap-1.5">
-                              <span className="size-2 rounded-full bg-red-400" />
-                              <span className="size-2 rounded-full bg-amber-400" />
-                              <span className="size-2 rounded-full bg-emerald-400" />
+                        {product.slug === "longshort-ai" ? (
+                          <Link
+                            href={withLocale(locale, `/produk/${product.slug}`)}
+                            className="group/img block overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl transition hover:border-emerald-500/50 dark:border-slate-700/80 dark:bg-slate-950"
+                          >
+                            <div className="mb-2 flex items-center justify-between px-2 pt-1 text-[10px] text-slate-500 dark:text-slate-400">
+                              <div className="flex gap-1.5">
+                                <span className="size-2 rounded-full bg-red-400" />
+                                <span className="size-2 rounded-full bg-amber-400" />
+                                <span className="size-2 rounded-full bg-emerald-400" />
+                              </div>
+                              <span className="font-mono text-emerald-600 dark:text-emerald-400">LongShort AI Studio</span>
+                              <span className="text-[9px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Pratinjau</span>
                             </div>
-                            <span className="font-mono text-emerald-600 dark:text-emerald-400">LongShort AI Studio</span>
-                            <span className="text-[9px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Pratinjau</span>
-                          </div>
-                          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-900">
-                            {/* Light Mode Screenshot */}
-                            <Image
-                              src="/assets/img/LongShortAI-Dashboard Light.webp"
-                              alt="Tangkapan Layar LongShort AI"
-                              width={960}
-                              height={540}
-                              className="block size-full object-cover transition duration-500 group-hover/img:scale-105 dark:hidden"
-                            />
-                            {/* Dark Mode Screenshot */}
-                            <Image
-                              src="/assets/img/LongShortAI-Dashboard Dark.webp"
-                              alt="Tangkapan Layar LongShort AI"
-                              width={960}
-                              height={540}
-                              className="hidden size-full object-cover transition duration-500 group-hover/img:scale-105 dark:block"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover/img:opacity-100">
-                              <span className="rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-lg">
-                                Buka Halaman Produk & Tangkapan Layar Lengkap →
-                              </span>
+                            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-900">
+                              {/* Light Mode Screenshot */}
+                              <Image
+                                src="/assets/img/LongShortAI-Dashboard Light.webp"
+                                alt="Tangkapan Layar LongShort AI"
+                                width={960}
+                                height={540}
+                                className="block size-full object-cover transition duration-500 group-hover/img:scale-105 dark:hidden"
+                              />
+                              {/* Dark Mode Screenshot */}
+                              <Image
+                                src="/assets/img/LongShortAI-Dashboard Dark.webp"
+                                alt="Tangkapan Layar LongShort AI"
+                                width={960}
+                                height={540}
+                                className="hidden size-full object-cover transition duration-500 group-hover/img:scale-105 dark:block"
+                              />
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover/img:opacity-100">
+                                <span className="rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-lg">
+                                  Buka Halaman Produk &amp; Tangkapan Layar Lengkap →
+                                </span>
+                              </div>
                             </div>
+                          </Link>
+                        ) : product.slug === "snake-go" ? (
+                          <div className="relative">
+                            <SnakeGoMockup />
                           </div>
-                        </Link>
+                        ) : (
+                          <div className="aspect-[16/9] rounded-2xl bg-slate-900" />
+                        )}
                       </div>
                     </div>
                   </div>
                 </Reveal>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </section>
 
         {/* ============ 2. SOLUSI SOFTWARE ============ */}

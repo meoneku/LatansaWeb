@@ -8,6 +8,7 @@ import {
   Download,
   Mail,
   MessageSquareText,
+  Terminal,
   UserCheck,
 } from "lucide-react";
 import Image from "next/image";
@@ -18,6 +19,7 @@ import {
   EducationMockup,
   EnterpriseMockup,
   MobileAppMockup,
+  SnakeGoMockup,
   WebMockup,
 } from "@/components/product-mockups";
 import { Reveal } from "@/components/reveal";
@@ -118,16 +120,16 @@ export default async function ProductDetailPage({
               <div className="flex items-center gap-2">
                 <span
                   className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider ${
-                    product.slug === "longshort-ai"
+                    meta.type === "ready"
                       ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300"
                       : "bg-brand-100 text-brand-800 dark:bg-brand-500/20 dark:text-brand-300"
                   }`}
                 >
-                  {product.slug === "longshort-ai"
-                    ? "Desktop Application"
+                  {meta.type === "ready"
+                    ? meta.badge?.[locale] ?? "Aplikasi Desktop"
                     : dict.productsIndex.categories.onDemand}
                 </span>
-                {product.slug === "longshort-ai" && (
+                {meta.type === "ready" && (
                   <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
                     v{version}
                   </span>
@@ -142,26 +144,56 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-          {product.slug === "longshort-ai" ? (
+          {meta.type === "ready" ? (
             <div className="mt-8 space-y-3">
               <div className="flex flex-wrap items-center gap-3">
-                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a
-                  href="/download/longshort-ai/windows"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-emerald-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/30 transition hover:-translate-y-0.5 hover:bg-emerald-500 active:scale-95"
+                  href={`/download/${product.slug}/windows`}
+                  className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/30 transition hover:-translate-y-0.5 hover:bg-emerald-500 active:scale-95"
                 >
                   <Download className="size-4" />
-                  Download Windows (.exe)
+                  Windows (.exe)
                 </a>
-                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a
-                  href="/download/longshort-ai/mac-arm64"
-                  className="inline-flex items-center gap-2.5 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white active:scale-95"
+                  href={`/download/${product.slug}/mac-arm64`}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3.5 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white active:scale-95"
                 >
                   <Download className="size-4" />
-                  macOS Apple Silicon (.dmg)
+                  macOS (.dmg)
                 </a>
+                {product.slug === "snake-go" && (
+                  <a
+                    href={`/download/${product.slug}/linux`}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3.5 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white active:scale-95"
+                  >
+                    <Download className="size-4" />
+                    Linux Binary
+                  </a>
+                )}
               </div>
+              {product.slug === "snake-go" && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-600 dark:text-slate-400">
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">Versi Terminal CLI:</span>
+                  <a
+                    href={`/download/${product.slug}/windows-terminal`}
+                    className="rounded-full bg-slate-100 px-3 py-1 font-mono text-[11px] font-semibold text-slate-700 transition hover:bg-emerald-100 hover:text-emerald-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-emerald-950 dark:hover:text-emerald-300"
+                  >
+                    Windows
+                  </a>
+                  <a
+                    href={`/download/${product.slug}/mac-terminal`}
+                    className="rounded-full bg-slate-100 px-3 py-1 font-mono text-[11px] font-semibold text-slate-700 transition hover:bg-emerald-100 hover:text-emerald-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-emerald-950 dark:hover:text-emerald-300"
+                  >
+                    macOS
+                  </a>
+                  <a
+                    href={`/download/${product.slug}/linux-terminal`}
+                    className="rounded-full bg-slate-100 px-3 py-1 font-mono text-[11px] font-semibold text-slate-700 transition hover:bg-emerald-100 hover:text-emerald-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-emerald-950 dark:hover:text-emerald-300"
+                  >
+                    Linux
+                  </a>
+                </div>
+              )}
             </div>
           ) : (
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -194,14 +226,14 @@ export default async function ProductDetailPage({
               aria-hidden="true"
               className="absolute inset-0 bg-grid-pattern opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
             />
-            {product.slug !== "longshort-ai" && (
+            {meta.type !== "ready" && (
               <p className="relative mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-700/80 dark:text-brand-400/80">
                 Ilustrasi Konsep Antarmuka
               </p>
             )}
             <div
               className={`relative mx-auto w-full ${
-                product.slug === "longshort-ai" ? "max-w-4xl" : "max-w-xl"
+                meta.type === "ready" ? "max-w-4xl" : "max-w-xl"
               }`}
             >
               {product.slug === "aplikasi-enterprise" && <EnterpriseMockup />}
@@ -209,6 +241,7 @@ export default async function ProductDetailPage({
               {product.slug === "mobile-app" && <MobileAppMockup />}
               {product.slug === "website-profesional" && <WebMockup />}
               {product.slug === "longshort-ai" && <LongShortAiScreenshots />}
+              {product.slug === "snake-go" && <SnakeGoMockup />}
             </div>
           </div>
         </Reveal>
@@ -293,7 +326,7 @@ export default async function ProductDetailPage({
             </div>
           </Reveal>
 
-          {product.slug === "longshort-ai" ? (
+          {meta.type === "ready" ? (
             <Reveal delay={140}>
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-800 via-teal-800 to-slate-900 p-7 text-white shadow-xl ring-1 ring-emerald-500/30">
                 <div className="flex items-center gap-3">
@@ -322,29 +355,94 @@ export default async function ProductDetailPage({
                   {d.readyDownloadSubtitle}
                 </p>
 
-                <div className="mt-5 space-y-2">
-                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                  <a
-                    href="/download/longshort-ai/windows"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-emerald-950 shadow-md transition hover:bg-emerald-50 active:scale-95"
-                  >
-                    <Download className="size-3.5" />
-                    <span>Download Windows (.exe)</span>
-                  </a>
-                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                  <a
-                    href="/download/longshort-ai/mac-arm64"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-950/50 px-4 py-2 text-xs font-semibold text-white transition hover:bg-emerald-900 active:scale-95"
-                  >
-                    <Download className="size-3.5" />
-                    <span>macOS Apple Silicon (.dmg)</span>
-                  </a>
-                </div>
+                {product.slug === "snake-go" ? (
+                  <div className="mt-5 space-y-3">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">
+                      Versi Desktop GUI:
+                    </p>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      <a
+                        href={`/download/${product.slug}/windows`}
+                        className="flex items-center justify-center gap-1 rounded-lg bg-white px-2 py-2 text-[11px] font-bold text-emerald-950 shadow-sm transition hover:bg-emerald-50"
+                      >
+                        <Download className="size-3" />
+                        Windows
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/mac-arm64`}
+                        className="flex items-center justify-center gap-1 rounded-lg border border-emerald-400/40 bg-emerald-950/50 px-2 py-2 text-[11px] font-semibold text-white transition hover:bg-emerald-900"
+                      >
+                        <Download className="size-3" />
+                        macOS
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/linux`}
+                        className="flex items-center justify-center gap-1 rounded-lg border border-emerald-400/40 bg-emerald-950/50 px-2 py-2 text-[11px] font-semibold text-white transition hover:bg-emerald-900"
+                      >
+                        <Download className="size-3" />
+                        Linux
+                      </a>
+                    </div>
+
+                    <p className="pt-1 text-[11px] font-bold uppercase tracking-wider text-emerald-300">
+                      Versi Terminal CLI:
+                    </p>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      <a
+                        href={`/download/${product.slug}/windows-terminal`}
+                        className="flex items-center justify-center gap-1 rounded-lg border border-emerald-400/30 bg-emerald-950/40 px-2 py-1.5 text-[11px] font-medium text-emerald-200 transition hover:bg-emerald-900"
+                      >
+                        <Terminal className="size-3" />
+                        Windows
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/mac-terminal`}
+                        className="flex items-center justify-center gap-1 rounded-lg border border-emerald-400/30 bg-emerald-950/40 px-2 py-1.5 text-[11px] font-medium text-emerald-200 transition hover:bg-emerald-900"
+                      >
+                        <Terminal className="size-3" />
+                        macOS
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/linux-terminal`}
+                        className="flex items-center justify-center gap-1 rounded-lg border border-emerald-400/30 bg-emerald-950/40 px-2 py-1.5 text-[11px] font-medium text-emerald-200 transition hover:bg-emerald-900"
+                      >
+                        <Terminal className="size-3" />
+                        Linux
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-5 space-y-2">
+                    <a
+                      href={`/download/${product.slug}/windows`}
+                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-emerald-950 shadow-md transition hover:bg-emerald-50 active:scale-95"
+                    >
+                      <Download className="size-3.5" />
+                      <span>Download Windows (.exe)</span>
+                    </a>
+                    <a
+                      href={`/download/${product.slug}/mac-arm64`}
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-950/50 px-4 py-2 text-xs font-semibold text-white transition hover:bg-emerald-900 active:scale-95"
+                    >
+                      <Download className="size-3.5" />
+                      <span>macOS Apple Silicon (.dmg)</span>
+                    </a>
+                  </div>
+                )}
 
                 <div className="mt-4 border-t border-emerald-700/60 pt-3 text-[11px] text-emerald-200/90">
                   <p className="font-semibold text-white">Spesifikasi Minimum:</p>
-                  <p className="mt-0.5">Windows 10/11 64-bit / macOS 12+</p>
-                  <p>RAM 8GB • Akselerasi GPU (CUDA/Metal)</p>
+                  {product.slug === "snake-go" ? (
+                    <>
+                      <p className="mt-0.5">Windows 10/11 64-bit / macOS 11+ / Linux</p>
+                      <p>RAM 512MB • Native Go Binary (Ultra-ringan)</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="mt-0.5">Windows 10/11 64-bit / macOS 12+</p>
+                      <p>RAM 8GB • Akselerasi GPU (CUDA/Metal)</p>
+                    </>
+                  )}
                 </div>
               </div>
             </Reveal>
@@ -404,7 +502,7 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      {product.slug === "longshort-ai" ? (
+      {meta.type === "ready" ? (
         <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 px-6 py-14 text-center shadow-xl shadow-emerald-900/25 sm:px-12 sm:py-16">
@@ -425,33 +523,88 @@ export default async function ProductDetailPage({
                   )}
                 </div>
                 <h2 className="mx-auto max-w-2xl text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                  {locale === "en"
+                  {product.slug === "snake-go"
+                    ? locale === "en"
+                      ? "Play Snake Go on Your Computer Now"
+                      : "Mainkan Snake Go di Komputer Anda Sekarang"
+                    : locale === "en"
                     ? "Start Repurposing Your Videos with LongShort AI"
                     : "Mulai Buat Video Pendek Otomatis dengan LongShort AI"}
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-emerald-100 sm:text-lg">
-                  {locale === "en"
+                  {product.slug === "snake-go"
+                    ? locale === "en"
+                      ? "Download the modern Go Lang Snake game for free. Ultra-lightweight, 100% offline, and zero lag."
+                      : "Unduh game Snake Go berbasis Go Lang secara gratis. Performa kilat, 100% offline, dan bebas lag."
+                    : locale === "en"
                     ? "Download the desktop installer now. Enjoy 100% offline processing, local privacy, and zero cloud limits."
                     : "Unduh installer desktop sekarang dan nikmati pemrosesan 100% lokal di komputer Anda tanpa batas kuota."}
                 </p>
-                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                  <a
-                    href="/download/longshort-ai/windows"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-emerald-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-50 sm:w-auto"
-                  >
-                    <Download className="size-4" />
-                    Download Windows (.exe)
-                  </a>
-                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                  <a
-                    href="/download/longshort-ai/mac-arm64"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
-                  >
-                    <Download className="size-4" />
-                    macOS Apple Silicon (.dmg)
-                  </a>
-                </div>
+                {product.slug === "snake-go" ? (
+                  <div className="mt-8 flex flex-col items-center justify-center gap-4">
+                    <div className="flex flex-wrap items-center justify-center gap-3">
+                      <a
+                        href={`/download/${product.slug}/windows`}
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-emerald-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-50"
+                      >
+                        <Download className="size-4" />
+                        Windows (.exe)
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/mac-arm64`}
+                        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
+                      >
+                        <Download className="size-4" />
+                        macOS (.dmg)
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/linux`}
+                        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
+                      >
+                        <Download className="size-4" />
+                        Linux Binary
+                      </a>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-emerald-200">
+                      <span className="font-semibold text-white">Versi Terminal CLI:</span>
+                      <a
+                        href={`/download/${product.slug}/windows-terminal`}
+                        className="rounded-full border border-emerald-400/30 bg-emerald-950/50 px-3 py-1 font-mono transition hover:bg-emerald-900 hover:text-white"
+                      >
+                        Terminal Windows
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/mac-terminal`}
+                        className="rounded-full border border-emerald-400/30 bg-emerald-950/50 px-3 py-1 font-mono transition hover:bg-emerald-900 hover:text-white"
+                      >
+                        Terminal macOS
+                      </a>
+                      <a
+                        href={`/download/${product.slug}/linux-terminal`}
+                        className="rounded-full border border-emerald-400/30 bg-emerald-950/50 px-3 py-1 font-mono transition hover:bg-emerald-900 hover:text-white"
+                      >
+                        Terminal Linux
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                    <a
+                      href={`/download/${product.slug}/windows`}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-emerald-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-50 sm:w-auto"
+                    >
+                      <Download className="size-4" />
+                      Download Windows (.exe)
+                    </a>
+                    <a
+                      href={`/download/${product.slug}/mac-arm64`}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+                    >
+                      <Download className="size-4" />
+                      macOS Apple Silicon (.dmg)
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </Reveal>

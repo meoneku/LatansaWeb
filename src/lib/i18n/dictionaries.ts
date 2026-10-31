@@ -24,7 +24,7 @@ const id = {
     primaryCta: "Konsultasi Gratis",
     secondaryCta: "Lihat Produk Kami",
     stats: [
-      { value: "5", label: "Lini Produk Digital" },
+      { value: "6", label: "Lini Produk Digital" },
       { value: "100%", label: "Mobile-First & Responsif" },
       { value: "<24 Jam", label: "Respon Konsultasi" },
     ],
@@ -47,11 +47,11 @@ const id = {
   techStrip: "Dibangun dengan Teknologi Modern & Teruji",
   productsSection: {
     eyebrow: "Produk Kami",
-    titleStart: "Lima Lini Produk, ",
+    titleStart: "Enam Lini Produk, ",
     titleHighlight: "Satu Tujuan",
     titleEnd: ": Membantu Anda Tumbuh",
     description:
-      "Dari sistem internal perusahaan, aplikasi desktop bertenaga AI, sampai website etalase usaha - semua dirancang khusus sesuai kebutuhan, bukan solusi tempelan.",
+      "Dari sistem internal perusahaan, software desktop AI, game modern Go Lang, sampai website etalase usaha - semua dirancang khusus sesuai kebutuhan, bukan solusi tempelan.",
   },
   learnMore: "Selengkapnya",
   whyUs: {
@@ -287,7 +287,38 @@ const id = {
         "Pengusaha & Pembicara Publik",
       ],
       tech: ["Tauri", "Rust", "React", "TypeScript", "Faster-Whisper", "YOLOv8", "FFmpeg"],
+    },
+    {
+      slug: "snake-go",
+      name: "Snake Go",
+      tagline:
+        "Game Ular Klasik Modern Berbasis Go Lang. Super Ringan, Cepat, dan Dilengkapi Mode Desktop GUI & Terminal.",
+      summary:
+        "Permainan Ular (Snake) legendaris yang dibangun dengan bahasa pemrograman Go (Golang). Menampilkan grafis arcade modern berbasis Ebitengine, leaderboard Top 10 persisten (Atomic Save), bonus bintang emas, serta versi terminal ANSI berkecepatan tinggi.",
+      description: [
+        "Snake Go menghadirkan kembali nostalgia permainan Snake klasik dalam balutan teknologi modern menggunakan bahasa pemrograman Go (Golang). Dirancang untuk performa komputasi maksimal dengan konsumsi memori minimal dan frame rate 60 FPS tanpa lag.",
+        "Tersedia dalam dua mode permainan: Mode Desktop GUI berbasis Ebitengine dengan visual tema gelap cyberpunk/arcade, animasi lidah & mata ular, efek partikel saat memakan apel, dan bonus bintang emas (+50 poin); serta Mode Terminal ANSI interaktif yang dapat langsung dimainkan dari command line.",
+        "Dilengkapi sistem penyimpanan skor terstruktur (Top 10 Leaderboard) dengan pengamanan Atomic Save (.tmp rename) untuk mencegah korupsi data. Mendukung mode Tembok (Dinding) dan Wrap (Tembus), serta installer native siap pakai untuk Windows dan macOS.",
+      ],
+      features: [
+        "Performa Tinggi & Ringan: Dibangun native dengan Go (Golang)",
+        "Dua Mode Permainan: Desktop GUI (Ebitengine) & Terminal ANSI",
+        "Papan Skor Terstruktur: Top 10 Leaderboard dengan Atomic Save",
+        "Gameplay Klasik & Modern: Mode Tembok (Dinding) & Mode Wrap (Tembus)",
+        "Visual Arcade Cyberpunk: Animasi lidah & mata ular, efek partikel dinamis",
+        "Sistem Bonus Bintang Emas (+50 poin) & efek suara sintetis",
+        "Statistik Akumulatif: Total permainan, apel dimakan, & bintang didapat",
+        "Multi-Platform: Installer siap pakai untuk Windows dan macOS",
+      ],
+      idealFor: [
+        "Pecinta Game Klasik & Retro Arcade",
+        "Developer & Komunitas Golang",
+        "Pengguna yang Mencari Hiburan Cepat & Ringan di Komputer",
+        "Penggemar Game Terminal & CLI",
+      ],
+      tech: ["Go (Golang)", "Ebitengine", "ANSI Terminal", "JSON Atomic Storage"],
     },
+
   ],
   productsIndex: {
     eyebrow: "Produk Kami",
@@ -777,7 +808,7 @@ const en: Dictionary = {
     primaryCta: "Free Consultation",
     secondaryCta: "Explore Our Products",
     stats: [
-      { value: "5", label: "Digital Product Lines" },
+      { value: "6", label: "Digital Product Lines" },
       { value: "100%", label: "Mobile-First & Responsive" },
       { value: "<24h", label: "Consultation Response" },
     ],
@@ -800,11 +831,11 @@ const en: Dictionary = {
   techStrip: "Built with Modern & Proven Technologies",
   productsSection: {
     eyebrow: "Our Products",
-    titleStart: "Five Product Lines, ",
+    titleStart: "Six Product Lines, ",
     titleHighlight: "One Goal",
     titleEnd: ": Helping You Grow",
     description:
-      "From internal company systems, AI-powered desktop software, to your business storefront website - everything is designed specifically around your needs, not off-the-shelf templates.",
+      "From internal company systems, AI desktop software, modern Go Lang games, to your business storefront website - everything is designed specifically around your needs, not off-the-shelf templates.",
   },
   learnMore: "Learn More",
   whyUs: {
@@ -1043,7 +1074,38 @@ const en: Dictionary = {
         "Entrepreneurs & Public Speakers",
       ],
       tech: ["Tauri", "Rust", "React", "TypeScript", "Faster-Whisper", "YOLOv8", "FFmpeg"],
+    },
+    {
+      slug: "snake-go",
+      name: "Snake Go",
+      tagline:
+        "Modern Classic Snake Game Powered by Go Lang. Ultra-Lightweight, Blazing Fast with Desktop GUI & Terminal Modes.",
+      summary:
+        "The legendary Snake arcade game rebuilt in Go (Golang). Features modern retro graphics powered by Ebitengine, a persistent Top 10 Leaderboard with atomic saves, golden bonus stars, and a lightning-fast ANSI terminal version.",
+      description: [
+        "Snake Go brings back the timeless nostalgia of the classic Snake game enhanced with the speed and reliability of Go (Golang). Engineered for maximum performance with minimal memory footprint and buttery-smooth 60 FPS gameplay.",
+        "Enjoy two versatile play modes: a Desktop GUI window powered by Ebitengine featuring a sleek cyberpunk/arcade dark aesthetic, snake animations, particle eating effects, and golden bonus stars (+50 pts); and an interactive ANSI Terminal mode playable directly inside your command line.",
+        "Features structured persistent scorekeeping (Top 10 Leaderboard) backed by Atomic Save transactions (.tmp rename) to safeguard against data loss. Supports both Wall and Wrap modes, with ready-to-run native installers for Windows and macOS.",
+      ],
+      features: [
+        "Blazing Fast & Lightweight: Native Go (Golang) performance",
+        "Dual Play Modes: Desktop GUI (Ebitengine) & ANSI Terminal",
+        "Structured Leaderboard: Top 10 Leaderboard with Atomic Save safety",
+        "Flexible Gameplay: Classic Wall mode and Wrap-around mode",
+        "Cyberpunk Retro Visuals: Snake eye/tongue animations & particle effects",
+        "Golden Star Bonus System (+50 points) & synthesized retro audio",
+        "Lifetime Game Statistics: Games played, apples eaten, & stars collected",
+        "Multi-Platform: Ready-to-run installers for Windows and macOS",
+      ],
+      idealFor: [
+        "Classic & Retro Arcade Game Enthusiasts",
+        "Golang Developers & Tech Enthusiasts",
+        "Casual PC Players Seeking Lightweight Desktop Fun",
+        "Terminal & Command-Line Gaming Fans",
+      ],
+      tech: ["Go (Golang)", "Ebitengine", "ANSI Terminal", "JSON Atomic Storage"],
     },
+
   ],
   productsIndex: {
     eyebrow: "Our Products",

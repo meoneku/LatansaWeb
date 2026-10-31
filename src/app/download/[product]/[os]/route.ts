@@ -39,22 +39,57 @@ export async function GET(
     const release = await relRes.json();
     const assets: Array<{ name: string; url: string }> = release.assets || [];
 
-    // 2. Cocokkan nama file installer berdasarkan sistem operasi
+    // 2. Cocokkan nama file installer berdasarkan sistem operasi & varian (GUI atau Terminal)
     const targetAsset = assets.find((asset) => {
       const name = (asset.name || "").toLowerCase();
-      if (osParam === "windows") {
-        return name.endsWith("-setup.exe") || name.endsWith(".msi");
+
+      // --- Varian Terminal CLI ---
+      if (osParam === "windows-terminal" || osParam === "terminal-windows") {
+        return (
+          (name.includes("terminal") && (name.includes("win") || name.endsWith(".exe"))) ||
+          name.endsWith("-windows-amd64.exe") ||
+          name.endsWith(".zip")
+        );
       }
-      if (osParam === "mac-arm64") {
+      if (
+        osParam === "mac-terminal" ||
+        osParam === "terminal-mac" ||
+        osParam === "terminal-darwin" ||
+        osParam === "darwin-terminal"
+      ) {
+        return name.includes("terminal") && (name.includes("darwin") || name.includes("mac"));
+      }
+      if (osParam === "linux-terminal" || osParam === "terminal-linux") {
+        return name.includes("terminal") && name.includes("linux");
+      }
+
+      // --- Varian Desktop GUI ---
+      if (osParam === "windows") {
+        return (
+          (!name.includes("terminal") &&
+            (name.endsWith(".exe") || name.endsWith(".msi") || name.endsWith("-setup.exe"))) ||
+          name.endsWith(".exe")
+        );
+      }
+      if (osParam === "mac-arm64" || osParam === "mac" || osParam === "macos") {
         return (
           name.endsWith(".dmg") &&
-          (name.includes("aarch64") || name.includes("arm64"))
+          (name.includes("aarch64") ||
+            name.includes("arm64") ||
+            (!name.includes("x64") && !name.includes("intel")))
         );
       }
       if (osParam === "mac-intel") {
         return (
           name.endsWith(".dmg") &&
-          (name.includes("x64") || name.includes("x86_64"))
+          (name.includes("x64") || name.includes("x86_64") || name.includes("intel"))
+        );
+      }
+      if (osParam === "linux") {
+        return (
+          !name.includes("terminal") &&
+          name.includes("linux") &&
+          !name.endsWith(".zip")
         );
       }
       return false;
